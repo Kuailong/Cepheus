@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procad.DataAccess", "Procad.DataAccess\Procad.DataAccess.csproj", "{6674F8FD-DC02-4B3B-890E-F148991F6D2C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procad.DataAccessTests", "Procad.DataAccessTests\Procad.DataAccessTests.csproj", "{A4CED54B-79D0-4293-8313-E8E82B8010EC}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://srvtf02.promob.local:8080/tfs/ti
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Procad.DataAccess\\Procad.DataAccess.csproj
+		SccProjectName1 = Procad.DataAccess
+		SccLocalPath1 = Procad.DataAccess
+		SccProjectUniqueName2 = Procad.DataAccessTests\\Procad.DataAccessTests.csproj
+		SccProjectName2 = Procad.DataAccessTests
+		SccLocalPath2 = Procad.DataAccessTests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6674F8FD-DC02-4B3B-890E-F148991F6D2C}.Release|x86.ActiveCfg = Release|Any CPU
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Debug|x86.ActiveCfg = Debug|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Debug|x86.Build.0 = Debug|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Release|Any CPU.ActiveCfg = Release|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Release|Mixed Platforms.Build.0 = Release|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Release|x86.ActiveCfg = Release|x86
+		{A4CED54B-79D0-4293-8313-E8E82B8010EC}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

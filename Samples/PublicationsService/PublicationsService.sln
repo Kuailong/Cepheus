@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicationsService", "PublicationsService\PublicationsService.csproj", "{244C3382-6813-4577-A987-DEE2EFFE244B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicationsService.Tests", "PublicationsService.Tests\PublicationsService.Tests.csproj", "{09A5A007-DDF5-4C1C-8E78-F3FAC8F9BDA6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{4CCEC355-EAF5-4580-88F9-F9544763BF6E}"
+	ProjectSection(SolutionItems) = preProject
+		Local.testsettings = Local.testsettings
+		PublicationsService.vsmdi = PublicationsService.vsmdi
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://srvtf02.promob.local:8080/tfs/ti
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = PublicationsService\\PublicationsService.csproj
+		SccProjectName1 = PublicationsService
+		SccLocalPath1 = PublicationsService
+		SccProjectUniqueName2 = PublicationsService.Tests\\PublicationsService.Tests.csproj
+		SccProjectName2 = PublicationsService.Tests
+		SccLocalPath2 = PublicationsService.Tests
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = PublicationsService.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{244C3382-6813-4577-A987-DEE2EFFE244B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{244C3382-6813-4577-A987-DEE2EFFE244B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{244C3382-6813-4577-A987-DEE2EFFE244B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{244C3382-6813-4577-A987-DEE2EFFE244B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A5A007-DDF5-4C1C-8E78-F3FAC8F9BDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A5A007-DDF5-4C1C-8E78-F3FAC8F9BDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A5A007-DDF5-4C1C-8E78-F3FAC8F9BDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A5A007-DDF5-4C1C-8E78-F3FAC8F9BDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

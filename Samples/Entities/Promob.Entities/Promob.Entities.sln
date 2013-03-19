@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promob.Entities", "Promob.Entities\Promob.Entities.csproj", "{7751890B-26D2-4FF2-88D5-1C4BD1365182}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promob.Entities.Identity", "Promob.Entities.Identity\Promob.Entities.Identity.csproj", "{9AA8AC1C-FF73-4F28-942A-1A70297D3977}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Promob.Entities.Log", "Promob.Entities.Log\Promob.Entities.Log.csproj", "{D152414E-7BB5-4400-88B5-3153A2CE08D1}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://srvtf02.promob.local:8080/tfs/ti
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Promob.Entities\\Promob.Entities.csproj
+		SccProjectName1 = Promob.Entities
+		SccLocalPath1 = Promob.Entities
+		SccProjectUniqueName2 = Promob.Entities.Identity\\Promob.Entities.Identity.csproj
+		SccProjectName2 = Promob.Entities.Identity
+		SccLocalPath2 = Promob.Entities.Identity
+		SccProjectUniqueName3 = Promob.Entities.Log\\Promob.Entities.Log.csproj
+		SccProjectName3 = Promob.Entities.Log
+		SccLocalPath3 = Promob.Entities.Log
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7751890B-26D2-4FF2-88D5-1C4BD1365182}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7751890B-26D2-4FF2-88D5-1C4BD1365182}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7751890B-26D2-4FF2-88D5-1C4BD1365182}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7751890B-26D2-4FF2-88D5-1C4BD1365182}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9AA8AC1C-FF73-4F28-942A-1A70297D3977}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9AA8AC1C-FF73-4F28-942A-1A70297D3977}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9AA8AC1C-FF73-4F28-942A-1A70297D3977}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9AA8AC1C-FF73-4F28-942A-1A70297D3977}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D152414E-7BB5-4400-88B5-3153A2CE08D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D152414E-7BB5-4400-88B5-3153A2CE08D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D152414E-7BB5-4400-88B5-3153A2CE08D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D152414E-7BB5-4400-88B5-3153A2CE08D1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
