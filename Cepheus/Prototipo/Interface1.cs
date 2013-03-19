@@ -17,20 +17,13 @@ namespace Prototipo
             InitializeComponent();
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-            var form2 = new Interface2();
-            this.Hide();
-            form2.ShowDialog();
-            this.Show();
-        }
-
         private void button14_Click(object sender, EventArgs e)
         {
             var addDesenv = new AddDesenvolvedora();
             addDesenv.ShowDialog();
-            var desenvName = addDesenv.NameDesenv;
+            var desenvName = new ComboBoxItem(addDesenv.NameDesenv, addDesenv.NameDesenv);
             cbxDesenv.Items.Add(desenvName);
+            cbxDesenv.SelectedText = desenvName.Text;
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -41,12 +34,37 @@ namespace Prototipo
             listBox1.Items.Add(nameType);
         }
 
-        private void button18_Click(object sender, EventArgs e)
+        private void relatórioToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
             var intRelatorio = new InterfaceRelatorio();
             intRelatorio.ShowDialog();
             this.Show();
+        }
+
+        private void trackToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var form2 = new Interface2();
+            this.Hide();
+            form2.ShowDialog();
+            this.Show();
+        }
+    }
+
+    public class ComboBoxItem
+    {
+        public string Text { get; set; }
+        public string Value { get; set; }
+
+        public ComboBoxItem(string text, string value)
+        {
+            Text = text;
+            Value = value;
+        }
+
+        public override string ToString()
+        {
+            return Text;
         }
     }
 }
