@@ -11,5 +11,6 @@ namespace Cepheus.Entities
         public int GameTypeId { get; set; }
         public string Type { get; set; }
         public string Description { get; set; }
+        public virtual ICollection<Game> Games { get; set; }
     }
 }

@@ -44,6 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\DeveloperConfig.cs" />
+    <Compile Include="Configurations\GameConfig.cs" />
+    <Compile Include="Configurations\GameTypeConfig.cs" />
     <Compile Include="Developer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameType.cs" />
@@ -53,9 +56,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Configurations\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
