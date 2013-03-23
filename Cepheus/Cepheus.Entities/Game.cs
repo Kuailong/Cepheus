@@ -10,6 +10,7 @@ namespace Cepheus.Entities
     {
         public int GameId { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         public virtual List<GameType> GameTypes { get; set; }
         public int DeveloperId { get; set; }
         public Developer Developer { get; set; }

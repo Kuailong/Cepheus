@@ -122,12 +122,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\DevelopersController.cs" />
     <Compile Include="Controllers\GamesController.cs" />
+    <Compile Include="Controllers\GameTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\Repository.cs" />
     <Compile Include="Models\CepheusContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -239,6 +242,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Cepheus.DataAccess\Cepheus.DataAccess.csproj">
+      <Project>{461f4fb6-b7c7-4a38-9be4-d0efc117001d}</Project>
+      <Name>Cepheus.DataAccess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Cepheus.Entities\Cepheus.Entities.csproj">
       <Project>{eb2f5e04-d960-4424-9f6a-04bf13c90004}</Project>
       <Name>Cepheus.Entities</Name>

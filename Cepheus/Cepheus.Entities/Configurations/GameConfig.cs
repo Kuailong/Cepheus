@@ -21,6 +21,9 @@ namespace Cepheus.Entities.Configurations
             this.Property(e => e.ImagePath)
                 .IsOptional();
 
+            this.Property(e => e.Description)
+                .IsOptional();
+
             this.HasRequired(e => e.Developer)
                 .WithMany()
                 .HasForeignKey(e => e.DeveloperId);
@@ -30,8 +33,8 @@ namespace Cepheus.Entities.Configurations
                 .Map(m =>
                 {
                     m.ToTable("GamesAndTypes");
-                    m.MapLeftKey("GameTypeId");
-                    m.MapRightKey("GameId");
+                    m.MapLeftKey("GameId");
+                    m.MapRightKey("GameTypeId");
                 });
         }
     }

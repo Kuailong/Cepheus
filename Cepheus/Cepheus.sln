@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cepheus.Entities", "Cepheus
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cepheus", "Cepheus\Cepheus.csproj", "{571C4CB7-7359-4037-B624-815B0C95088B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cepheus.DataAccess", "Cepheus.DataAccess\Cepheus.DataAccess.csproj", "{461F4FB6-B7C7-4A38-9BE4-D0EFC117001D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{571C4CB7-7359-4037-B624-815B0C95088B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{571C4CB7-7359-4037-B624-815B0C95088B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{571C4CB7-7359-4037-B624-815B0C95088B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{461F4FB6-B7C7-4A38-9BE4-D0EFC117001D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{461F4FB6-B7C7-4A38-9BE4-D0EFC117001D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{461F4FB6-B7C7-4A38-9BE4-D0EFC117001D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{461F4FB6-B7C7-4A38-9BE4-D0EFC117001D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

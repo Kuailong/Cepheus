@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -118,6 +119,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Ph03nyx-Super-Mario-Paper-Mario.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cepheus.DataAccess\Cepheus.DataAccess.csproj">
+      <Project>{461f4fb6-b7c7-4a38-9be4-d0efc117001d}</Project>
+      <Name>Cepheus.DataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cepheus.Entities\Cepheus.Entities.csproj">
+      <Project>{eb2f5e04-d960-4424-9f6a-04bf13c90004}</Project>
+      <Name>Cepheus.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Web.Http;
 using Cepheus.Entities;
 using Cepheus.Infrastructure;
@@ -13,21 +11,21 @@ using Cepheus.Models;
 
 namespace Cepheus.Controllers
 {
-    public class GamesController : ApiController
+    public class DevelopersController : ApiController
     {
         #region Private Properties
 
-        readonly Repository<Game> _repository;
+        readonly Repository<Developer> _repository;
         readonly DbContext _context; 
 
         #endregion
 
         #region Constructor
 
-        public GamesController()
+        public DevelopersController()
         {
             this._context = new CepheusContext();
-            this._repository = new Repository<Game>(this._context);
+            this._repository = new Repository<Developer>(this._context);
         }
 
         #endregion
@@ -35,9 +33,9 @@ namespace Cepheus.Controllers
         #region Actions
 
         [HttpGet]
-        public IQueryable<Game> Get()
+        public IQueryable<Developer> Get()
         {
-            var result = this._repository.Get(e => e.Developer);
+            var result = this._repository.Get();
 
             if (result == null || result.Count() == 0)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
@@ -46,9 +44,9 @@ namespace Cepheus.Controllers
         }
 
         [HttpGet]
-        public Game Get(int id)
+        public Developer Get(int id)
         {
-            var result = this._repository.Get(e => e.GameId == id, e => e.Developer)
+            var result = this._repository.Get(e => e.DeveloperId == id)
                   .FirstOrDefault();
 
             if (result == null)
@@ -57,29 +55,8 @@ namespace Cepheus.Controllers
             return result;
         }
 
-        [HttpGet]
-        public HttpResponseMessage Image(int id)
-        {
-            var game = this._repository.Get(e => e.GameId == id)
-                .FirstOrDefault();
-            if (game == null)
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
-
-            var path = string.Format(@"C:\Temp\{0}_{1}.jpg", id, game.Name);
-            var stream = new FileStream(path, FileMode.Open);
-
-            var response = new HttpResponseMessage(HttpStatusCode.OK);
-            response.Content = new StreamContent(stream);
-            response.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment");
-            response.Content.Headers.ContentDisposition.FileName = "test.jpg";
-            response.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
-            response.Content.Headers.ContentLength = stream.Length;
-
-            return response;
-        }
-
         [HttpPost]
-        public HttpResponseMessage Post(Game value)
+        public HttpResponseMessage Post(Developer value)
         {
             if (value == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
@@ -87,26 +64,26 @@ namespace Cepheus.Controllers
             this._repository.Add(value);
             this._context.SaveChanges();
 
-            return Request.CreateResponse<Game>(HttpStatusCode.Created, value);
+            return Request.CreateResponse<Developer>(HttpStatusCode.Created, value);
         }
 
         [HttpPut]
-        public HttpResponseMessage Put(int id, Game value)
+        public HttpResponseMessage Put(int id, Developer value)
         {
             if (value == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
-            value.GameId = id;
-            this._repository.Update<Game>(value);
+            value.DeveloperId = id;
+            this._repository.Update<Developer>(value);
             this._context.SaveChanges();
 
-            return Request.CreateResponse<Game>(HttpStatusCode.OK, value);
+            return Request.CreateResponse<Developer>(HttpStatusCode.OK, value);
         }
 
         [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {
-            var value = this._repository.Get(e => e.GameId == id).SingleOrDefault();
+            var value = this._repository.Get(e => e.DeveloperId == id).SingleOrDefault();
 
             if (value == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));

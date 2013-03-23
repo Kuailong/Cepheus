@@ -29,33 +29,33 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Interface2));
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.cbxMethod = new System.Windows.Forms.ComboBox();
+            this.txtTraceUrl = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // comboBox1
+            // cbxMethod
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cbxMethod.FormattingEnabled = true;
+            this.cbxMethod.Items.AddRange(new object[] {
             "GET",
             "POST",
             "PUT",
             "DELETE"});
-            this.comboBox1.Location = new System.Drawing.Point(13, 13);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(91, 21);
-            this.comboBox1.TabIndex = 0;
+            this.cbxMethod.Location = new System.Drawing.Point(13, 13);
+            this.cbxMethod.Name = "cbxMethod";
+            this.cbxMethod.Size = new System.Drawing.Size(91, 21);
+            this.cbxMethod.TabIndex = 0;
             // 
-            // textBox1
+            // txtTraceUrl
             // 
-            this.textBox1.Location = new System.Drawing.Point(110, 14);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(581, 20);
-            this.textBox1.TabIndex = 1;
+            this.txtTraceUrl.Location = new System.Drawing.Point(110, 14);
+            this.txtTraceUrl.Name = "txtTraceUrl";
+            this.txtTraceUrl.Size = new System.Drawing.Size(581, 20);
+            this.txtTraceUrl.TabIndex = 1;
             // 
             // button1
             // 
@@ -103,8 +103,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.txtTraceUrl);
+            this.Controls.Add(this.cbxMethod);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Interface2";
             this.Text = "Interface de Demonstração Simples";
@@ -115,8 +115,8 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox cbxMethod;
+        private System.Windows.Forms.TextBox txtTraceUrl;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;

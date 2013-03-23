@@ -68,18 +68,18 @@
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.button12 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.listBox7 = new System.Windows.Forms.ListBox();
+            this.listGetType = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblGameDevelopGet = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblGameDescGet = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
+            this.lblGameNameGet = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.listBox3 = new System.Windows.Forms.ListBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.cbxGameId = new System.Windows.Forms.ComboBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
             this.tabPage1 = new System.Windows.Forms.TabPage();
@@ -101,6 +101,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.txtLog = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.relatórioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -112,6 +115,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -483,18 +487,18 @@
             // 
             // tabPage2
             // 
-            this.tabPage2.Controls.Add(this.listBox7);
+            this.tabPage2.Controls.Add(this.listGetType);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Controls.Add(this.pictureBox1);
             this.tabPage2.Controls.Add(this.label7);
-            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.lblGameDevelopGet);
             this.tabPage2.Controls.Add(this.label9);
-            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.lblGameDescGet);
             this.tabPage2.Controls.Add(this.label21);
-            this.tabPage2.Controls.Add(this.label22);
+            this.tabPage2.Controls.Add(this.lblGameNameGet);
             this.tabPage2.Controls.Add(this.label23);
             this.tabPage2.Controls.Add(this.listBox3);
-            this.tabPage2.Controls.Add(this.comboBox3);
+            this.tabPage2.Controls.Add(this.cbxGameId);
             this.tabPage2.Controls.Add(this.textBox4);
             this.tabPage2.Controls.Add(this.button5);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
@@ -505,18 +509,18 @@
             this.tabPage2.Text = "Pesquisar";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // listBox7
+            // listGetType
             // 
-            this.listBox7.BackColor = System.Drawing.Color.White;
-            this.listBox7.FormattingEnabled = true;
-            this.listBox7.Items.AddRange(new object[] {
+            this.listGetType.BackColor = System.Drawing.Color.White;
+            this.listGetType.FormattingEnabled = true;
+            this.listGetType.Items.AddRange(new object[] {
             "Multiplayer",
             "Singleplayer",
             "Ação"});
-            this.listBox7.Location = new System.Drawing.Point(434, 134);
-            this.listBox7.Name = "listBox7";
-            this.listBox7.Size = new System.Drawing.Size(120, 225);
-            this.listBox7.TabIndex = 35;
+            this.listGetType.Location = new System.Drawing.Point(434, 134);
+            this.listGetType.Name = "listGetType";
+            this.listGetType.Size = new System.Drawing.Size(120, 225);
+            this.listGetType.TabIndex = 35;
             // 
             // label8
             // 
@@ -546,14 +550,14 @@
             this.label7.TabIndex = 32;
             this.label7.Text = "Imagem";
             // 
-            // label6
+            // lblGameDevelopGet
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(224, 87);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(129, 13);
-            this.label6.TabIndex = 31;
-            this.label6.Text = "Nome da desenvolvedora";
+            this.lblGameDevelopGet.AutoSize = true;
+            this.lblGameDevelopGet.Location = new System.Drawing.Point(224, 87);
+            this.lblGameDevelopGet.Name = "lblGameDevelopGet";
+            this.lblGameDevelopGet.Size = new System.Drawing.Size(129, 13);
+            this.lblGameDevelopGet.TabIndex = 31;
+            this.lblGameDevelopGet.Text = "Nome da desenvolvedora";
             // 
             // label9
             // 
@@ -564,14 +568,14 @@
             this.label9.TabIndex = 30;
             this.label9.Text = "Desenvolvedora";
             // 
-            // label10
+            // lblGameDescGet
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(224, 61);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(93, 13);
-            this.label10.TabIndex = 29;
-            this.label10.Text = "Descrição do jogo";
+            this.lblGameDescGet.AutoSize = true;
+            this.lblGameDescGet.Location = new System.Drawing.Point(224, 61);
+            this.lblGameDescGet.Name = "lblGameDescGet";
+            this.lblGameDescGet.Size = new System.Drawing.Size(93, 13);
+            this.lblGameDescGet.TabIndex = 29;
+            this.lblGameDescGet.Text = "Descrição do jogo";
             // 
             // label21
             // 
@@ -582,14 +586,14 @@
             this.label21.TabIndex = 28;
             this.label21.Text = "Descrição";
             // 
-            // label22
+            // lblGameNameGet
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(224, 35);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(79, 13);
-            this.label22.TabIndex = 27;
-            this.label22.Text = "Nome do game";
+            this.lblGameNameGet.AutoSize = true;
+            this.lblGameNameGet.Location = new System.Drawing.Point(224, 35);
+            this.lblGameNameGet.Name = "lblGameNameGet";
+            this.lblGameNameGet.Size = new System.Drawing.Size(79, 13);
+            this.lblGameNameGet.TabIndex = 27;
+            this.lblGameNameGet.Text = "Nome do game";
             // 
             // label23
             // 
@@ -608,13 +612,14 @@
             this.listBox3.Size = new System.Drawing.Size(120, 329);
             this.listBox3.TabIndex = 25;
             // 
-            // comboBox3
+            // cbxGameId
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Location = new System.Drawing.Point(427, 5);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(142, 21);
-            this.comboBox3.TabIndex = 24;
+            this.cbxGameId.FormattingEnabled = true;
+            this.cbxGameId.Location = new System.Drawing.Point(427, 5);
+            this.cbxGameId.Name = "cbxGameId";
+            this.cbxGameId.Size = new System.Drawing.Size(142, 21);
+            this.cbxGameId.TabIndex = 24;
+            this.cbxGameId.SelectedIndexChanged += new System.EventHandler(this.cbxGameId_SelectedIndexChanged);
             // 
             // textBox4
             // 
@@ -811,11 +816,43 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(13, 25);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(583, 396);
             this.tabControl1.TabIndex = 0;
+            // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.txtLog);
+            this.tabPage5.Controls.Add(this.label16);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage5.Size = new System.Drawing.Size(575, 370);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Logs";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // txtLog
+            // 
+            this.txtLog.Location = new System.Drawing.Point(10, 24);
+            this.txtLog.Multiline = true;
+            this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
+            this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLog.Size = new System.Drawing.Size(559, 340);
+            this.txtLog.TabIndex = 1;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(7, 7);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(60, 13);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "Resultados";
             // 
             // menuStrip1
             // 
@@ -874,6 +911,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -921,18 +960,18 @@
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.Button button12;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.ListBox listBox7;
+        private System.Windows.Forms.ListBox listGetType;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblGameDevelopGet;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblGameDescGet;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label lblGameNameGet;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ListBox listBox3;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox cbxGameId;
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.TabPage tabPage1;
@@ -959,5 +998,8 @@
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem relatórioToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem trackToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.TextBox txtLog;
+        private System.Windows.Forms.Label label16;
     }
 }
