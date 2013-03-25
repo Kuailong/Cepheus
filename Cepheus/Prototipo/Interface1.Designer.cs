@@ -513,10 +513,6 @@
             // 
             this.listGetType.BackColor = System.Drawing.Color.White;
             this.listGetType.FormattingEnabled = true;
-            this.listGetType.Items.AddRange(new object[] {
-            "Multiplayer",
-            "Singleplayer",
-            "Ação"});
             this.listGetType.Location = new System.Drawing.Point(434, 134);
             this.listGetType.Name = "listGetType";
             this.listGetType.Size = new System.Drawing.Size(120, 225);
@@ -540,6 +536,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 33;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Visible = false;
             // 
             // label7
             // 
@@ -549,6 +546,7 @@
             this.label7.Size = new System.Drawing.Size(44, 13);
             this.label7.TabIndex = 32;
             this.label7.Text = "Imagem";
+            this.label7.Visible = false;
             // 
             // lblGameDevelopGet
             // 

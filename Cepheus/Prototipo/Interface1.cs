@@ -19,7 +19,7 @@ namespace Prototipo
     {
         private WebApiRequester requester = new WebApiRequester(eMediaType.Json);
         private ResourcesRepository repository;
-        private string gamesUrl = "http://localhost:62861/api/Games";
+        private string gamesUrl = "http://localhost/Cepheus/Games";
         private string gameTypesUrl = "http://localhost:62861/api/GameTypes";
         private string developsUrl = "http://localhost:62861/api/Developers";
         private string localFilePath = @"c:\temp";
@@ -48,13 +48,14 @@ namespace Prototipo
             lblGameNameGet.Text = game.Name;
             lblGameDescGet.Text = game.Description;
             lblGameDevelopGet.Text = game.Developer.Name;
-            listGetType.Items.AddRange(game.GameTypes.ToArray());
+            listGetType.Items.Clear();
+            listGetType.Items.AddRange(game.GameTypes.Select(e => e.Description).ToArray());
             listGetType.DisplayMember = "Name";
-            using (WebClient webClient = new WebClient())
-            {
-                webClient.DownloadFile(gamesUrl + "/" + game.GameId + "/Image", localFilePath + @"\image.jpg");
-            }
-            pictureBox1.Image = Image.FromFile(@"c:\temp\image.jpg");
+            //using (WebClient webClient = new WebClient())
+            //{
+            //    webClient.DownloadFile(gamesUrl + "/" + game.GameId + "/Image", localFilePath + @"\image.jpg");
+            //}
+            //pictureBox1.Image = Image.FromFile(@"c:\temp\image.jpg");
         }
 
         private void button14_Click(object sender, EventArgs e)
@@ -95,6 +96,8 @@ namespace Prototipo
             var itemSelected = (Game)cbxGameId.SelectedValue;
             var result = repository.Get<Game>(string.Format("{0}/{1}", gamesUrl, itemSelected.GameId));
             SetGetGame(result.Content);
+            var log = new Log();
+            log.RegisterLog(result, txtLog);
         }
     }
 
@@ -119,20 +122,26 @@ namespace Prototipo
     {
         public void RegisterLog<T>(ResourceResult<T> result, TextBox txtBox)
         {
-            txtBox.Text +=
-                "--------------------------\n" +
-                "Status: " + result.StatusCode.ToString() +
-                "\nResponse Content:" + result.ResponseMessage.Content.ToString() +
-                "--------------------------\n\n";
+            var text = txtBox.Text;
+            text = 
+                "--------------------------" + Environment.NewLine +
+                "Status: " + result.StatusCode.ToString() + Environment.NewLine +
+                "Response Content:" + result.ResponseMessage.Content.ReadAsStringAsync().Result + Environment.NewLine +
+                "--------------------------" + Environment.NewLine + Environment.NewLine + text;
+
+            txtBox.Text = text;
         }
 
         internal void RegisterLog<T>(ResourceResult<IEnumerable<T>> result, TextBox txtBox)
         {
-            txtBox.Text +=
-                "--------------------------\n" +
-                "Status: " + result.StatusCode.ToString() +
-                "\nResponse Content:" + result.ResponseMessage.Content.ToString() +
-                "--------------------------\n\n";
+            var text = txtBox.Text;
+            text =
+                "--------------------------" + Environment.NewLine +
+                "Status: " + result.StatusCode.ToString() + Environment.NewLine +
+                "Response Content:" + result.ResponseMessage.Content.ReadAsStringAsync().Result + Environment.NewLine +
+                "--------------------------" + Environment.NewLine + Environment.NewLine + text;
+
+            txtBox.Text = text;
         }
     }
 }
