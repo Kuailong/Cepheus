@@ -55,6 +55,19 @@ namespace Cepheus.Controllers
             return result;
         }
 
+        [HttpGet]
+        [ActionName("Search")]
+        public GameType Search(string value)
+        {
+            var result = this._repository.Get(e => e.Type.Contains(value))
+                  .FirstOrDefault();
+
+            if (result == null)
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+
+            return result;
+        }
+
         [HttpPost]
         public HttpResponseMessage Post(GameType value)
         {

@@ -18,6 +18,12 @@ namespace Cepheus
             );
 
             config.Routes.MapHttpRoute(
+                name: "Search",
+                routeTemplate: "{controller}/Search/{value}",
+                defaults: new { value = RouteParameter.Optional, action = "Search" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "{controller}/{id}/{action}",
                 defaults: new { id = RouteParameter.Optional, action = RouteParameter.Optional },

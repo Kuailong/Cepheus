@@ -11,9 +11,11 @@
         <Button Content="Pesquisar" HorizontalAlignment="Left" Margin="328,10,0,0" VerticalAlignment="Top" Width="101" Height="23"/>
         <ListView HorizontalAlignment="Left" Height="305" Margin="10,61,0,0" VerticalAlignment="Top" Width="117" Background="{x:Null}" BorderBrush="Black" 
                   Foreground="Black">
-            <ListView.View>
-                <GridView/>
-            </ListView.View>
+            <ListView.Items>
+                <DataTemplate>
+                    <Label Content="aa"/>
+                </DataTemplate>
+            </ListView.Items>
         </ListView>
         <Label Content="Nome:" HorizontalAlignment="Left" Margin="132,61,0,0" VerticalAlignment="Top"/>
         <Label Content="Descrição:" HorizontalAlignment="Left" Margin="132,92,0,0" VerticalAlignment="Top"/>

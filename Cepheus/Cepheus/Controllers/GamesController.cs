@@ -26,7 +26,7 @@ namespace Cepheus.Controllers
 
         public GamesController()
         {
-            this._context = new CepheusContext();
+            this._context = new CepheusContext(false);
             this._repository = new Repository<Game>(this._context);
         }
 
@@ -49,6 +49,19 @@ namespace Cepheus.Controllers
         public Game Get(int id)
         {
             var result = this._repository.Get(e => e.GameId == id, e => e.Developer)
+                  .FirstOrDefault();
+
+            if (result == null)
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+
+            return result;
+        }
+
+        [HttpGet]
+        [ActionName("Search")]
+        public Game Search(string value)
+        {
+            var result = this._repository.Get(e => e.Name.Contains(value))
                   .FirstOrDefault();
 
             if (result == null)
