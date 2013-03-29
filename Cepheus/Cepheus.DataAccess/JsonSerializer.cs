@@ -10,7 +10,13 @@ namespace Cepheus.DataAccess
     {
         public static string Serialize(object value)
         {
-            return JsonConvert.SerializeObject(value);
+            return JsonConvert.SerializeObject(value, 
+                new JsonSerializerSettings 
+                { 
+                    TypeNameHandling = TypeNameHandling.Objects, 
+                    PreserveReferencesHandling = PreserveReferencesHandling.All,
+                    ReferenceLoopHandling = ReferenceLoopHandling.Serialize
+                });
         }
     }
 

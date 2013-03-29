@@ -12,6 +12,7 @@ using Cepheus.DataAccess;
 using Cepheus.DataAccess.Entities;
 using Cepheus.DataAccess.Enums;
 using Cepheus.Entities;
+using System.IO;
 
 namespace Prototipo
 {
@@ -20,25 +21,53 @@ namespace Prototipo
         private WebApiRequester requester = new WebApiRequester(eMediaType.Json);
         private ResourcesRepository repository;
         private string gamesUrl = "http://localhost/Cepheus/Games";
-        private string gameTypesUrl = "http://localhost:62861/api/GameTypes";
-        private string developsUrl = "http://localhost:62861/api/Developers";
+        private string gameTypesUrl = "http://localhost/Cepheus/GameTypes";
+        private string developsUrl = "http://localhost/Cepheus/Developers";
         private string localFilePath = @"c:\temp";
 
         public Interface1()
         {
             InitializeComponent();
             repository = new ResourcesRepository(requester);
+            SetGetGames();
+            SetAddGame();
+        }
 
+        private void SetAddGame()
+        {
+            var types = repository.GetMany<GameType>(gameTypesUrl);
+            lstBoxTypes.DataSource = types.Content.ToList();
+            lstBoxTypes.Refresh();
+            lstBoxTypes.DisplayMember = "Type";
+            lstBoxTypes.SelectedIndex = 0;
+
+            var develops = repository.GetMany<Developer>(developsUrl);
+            cbxDesenv.DataSource = develops.Content.ToList();
+            cbxDesenv.Refresh();
+            cbxDesenv.DisplayMember = "Name";
+            cbxDesenv.SelectedIndex = 0;
+
+            txtImage.Text = string.Empty;
+            txtAddGameName.Text = string.Empty;
+            txtAddGameDescrip.Text = string.Empty;
+
+            lstBoxTypeAdded.DataSource = null;
+            lstBoxTypeAdded.Refresh();
+        }
+
+        private void SetGetGames()
+        {
             var games = repository.GetMany<Game>(gamesUrl);
             var log = new Log();
-            log.RegisterLog(games, txtLog);
+            log.RegisterLog(games, txtLog, gamesUrl);
 
             if (!games.IsSuccessStatusCode)
                 throw new Exception("Games not found");
-            
-            cbxGameId.DataSource = games.Content.ToList();
-            cbxGameId.DisplayMember = "Name";
-            cbxGameId.SelectedIndex = 0;
+
+            lstBoxSearch.Items.Clear();
+            lstBoxSearch.DataSource = games.Content.ToList();
+            lstBoxSearch.DisplayMember = "Name";
+            lstBoxSearch.SelectedIndex = 0;
 
             SetGetGame(games.Content.First());
         }
@@ -51,20 +80,20 @@ namespace Prototipo
             listGetType.Items.Clear();
             listGetType.Items.AddRange(game.GameTypes.Select(e => e.Description).ToArray());
             listGetType.DisplayMember = "Name";
-            //using (WebClient webClient = new WebClient())
-            //{
-            //    webClient.DownloadFile(gamesUrl + "/" + game.GameId + "/Image", localFilePath + @"\image.jpg");
-            //}
-            //pictureBox1.Image = Image.FromFile(@"c:\temp\image.jpg");
+            if (game.Image != null)
+                using (var ms = new MemoryStream(game.Image))
+                {
+                    pictureBox1.Image = Image.FromStream(ms);
+                }
         }
 
         private void button14_Click(object sender, EventArgs e)
         {
             var addDesenv = new AddDesenvolvedora();
             addDesenv.ShowDialog();
-            var desenvName = new ComboBoxItem(addDesenv.NameDesenv, addDesenv.NameDesenv);
+            var desenvName = new Developer() { Name = addDesenv.NameDesenv, Description = addDesenv.DescriptDesenv };
             cbxDesenv.Items.Add(desenvName);
-            cbxDesenv.SelectedText = desenvName.Text;
+            cbxDesenv.SelectedText = desenvName.Name;
         }
 
         private void button15_Click(object sender, EventArgs e)
@@ -72,7 +101,7 @@ namespace Prototipo
             var addType = new AddType();
             addType.ShowDialog();
             var nameType = addType.NameType;
-            listBox1.Items.Add(nameType);
+            lstBoxTypeAdded.Items.Add(nameType);
         }
 
         private void relatórioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -91,13 +120,120 @@ namespace Prototipo
             this.Show();
         }
 
-        private void cbxGameId_SelectedIndexChanged(object sender, EventArgs e)
+        private void gameId_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var itemSelected = (Game)cbxGameId.SelectedValue;
-            var result = repository.Get<Game>(string.Format("{0}/{1}", gamesUrl, itemSelected.GameId));
+            var itemSelected = (Game)lstBoxSearch.SelectedValue;
+            var url = string.Format("{0}/{1}", gamesUrl, itemSelected.GameId);
+            var result = repository.Get<Game>(url);
             SetGetGame(result.Content);
             var log = new Log();
-            log.RegisterLog(result, txtLog);
+            log.RegisterLog(result, txtLog, url);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            var text = txtSearch.Text;
+            var url = string.Format("{0}/Search/{1}", gamesUrl, text);
+            var result = repository.GetMany<Game>(url);
+            if (!result.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Não foram encontrados jogos com essa busca: {0}", text);
+                result = repository.GetMany<Game>(gamesUrl);
+                return;
+            }
+
+            var log = new Log();
+            log.RegisterLog(result, txtLog, url);
+
+            if (!result.IsSuccessStatusCode)
+                throw new Exception("Games not found");
+
+            lstBoxSearch.DataSource = result.Content.ToList();
+            lstBoxSearch.DisplayMember = "Name";
+            lstBoxSearch.SelectedIndex = 0;
+
+            SetGetGame(result.Content.First());
+        }
+
+        private void btnAddType_Click(object sender, EventArgs e)
+        {
+            if (lstBoxTypes.Items == null || lstBoxTypes.Items.Count == 0)
+                return;
+
+            var item = (GameType)lstBoxTypes.SelectedValue;
+            var dataSource = (List<GameType>)lstBoxTypes.DataSource;
+            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<GameType>)lstBoxTypeAdded.DataSource : new List<GameType>();
+            addDataSource.Add(item);
+            dataSource.Remove(item);
+            lstBoxTypeAdded.DataSource = addDataSource.ToList();
+            lstBoxTypeAdded.DisplayMember = "Type";
+            lstBoxTypes.DataSource = dataSource.ToList();
+            lstBoxTypeAdded.Refresh();
+            lstBoxTypes.Refresh();
+        }
+
+        private void btnRemoveType_Click(object sender, EventArgs e)
+        {
+            if (lstBoxTypeAdded.DataSource == null || lstBoxTypeAdded.Items.Count == 0)
+                return;
+
+            var item = (GameType)lstBoxTypeAdded.SelectedValue;
+            var dataSource = (List<GameType>)lstBoxTypes.DataSource;
+            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<GameType>)lstBoxTypeAdded.DataSource : new List<GameType>();
+            dataSource.Add(item);
+            addDataSource.Remove(item);
+            lstBoxTypeAdded.DataSource = addDataSource.ToList();
+            lstBoxTypeAdded.DisplayMember = "Type";
+            lstBoxTypes.DataSource = dataSource.ToList();
+            lstBoxTypeAdded.Refresh();
+            lstBoxTypes.Refresh();
+        }
+
+        private void btnAddImage_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAddGame_Click(object sender, EventArgs e)
+        {
+            var name = txtAddGameName.Text;
+            var descrip = txtAddGameDescrip.Text;
+            var develop = (Developer)cbxDesenv.SelectedValue;
+
+            var types = new List<GameType>();
+            foreach (var item in lstBoxTypeAdded.Items)
+            {
+                types.Add((GameType)item);
+            }
+
+            byte[] image = null;
+            if(!string.IsNullOrEmpty(txtImage.Text))
+                try
+                {
+                    image = File.ReadAllBytes(txtImage.Text);
+                }
+                catch
+                {
+                }
+
+            var developId = develop.DeveloperId;
+            var game = new Game()
+            {
+                Name = name,
+                Description = descrip,
+                Image = image,
+                GameTypes = types,
+                Developer = developId == 0 ? develop : null,
+                DeveloperId = developId
+            };
+
+            var result = repository.Post<Game>(gamesUrl, game);
+            if(result.IsSuccessStatusCode)
+                MessageBox.Show("Jogo adicionado.");
+            else
+                MessageBox.Show("Não foi possível adicionar o jogo.");
+
+            SetAddGame();
         }
     }
 
@@ -120,11 +256,12 @@ namespace Prototipo
 
     public class Log
     {
-        public void RegisterLog<T>(ResourceResult<T> result, TextBox txtBox)
+        public void RegisterLog<T>(ResourceResult<T> result, TextBox txtBox, string url)
         {
             var text = txtBox.Text;
-            text = 
+            text =
                 "--------------------------" + Environment.NewLine +
+                "Url: " + url +
                 "Status: " + result.StatusCode.ToString() + Environment.NewLine +
                 "Response Content:" + result.ResponseMessage.Content.ReadAsStringAsync().Result + Environment.NewLine +
                 "--------------------------" + Environment.NewLine + Environment.NewLine + text;
@@ -132,11 +269,12 @@ namespace Prototipo
             txtBox.Text = text;
         }
 
-        internal void RegisterLog<T>(ResourceResult<IEnumerable<T>> result, TextBox txtBox)
+        internal void RegisterLog<T>(ResourceResult<IEnumerable<T>> result, TextBox txtBox, string url)
         {
             var text = txtBox.Text;
             text =
                 "--------------------------" + Environment.NewLine +
+                "Url: " + url +
                 "Status: " + result.StatusCode.ToString() + Environment.NewLine +
                 "Response Content:" + result.ResponseMessage.Content.ReadAsStringAsync().Result + Environment.NewLine +
                 "--------------------------" + Environment.NewLine + Environment.NewLine + text;

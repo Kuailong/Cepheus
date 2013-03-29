@@ -14,6 +14,6 @@ namespace Cepheus.Entities
         public virtual List<GameType> GameTypes { get; set; }
         public int DeveloperId { get; set; }
         public Developer Developer { get; set; }
-        public string ImagePath { get; set; }
+        public byte[] Image { get; set; }
     }
 }

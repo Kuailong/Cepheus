@@ -57,10 +57,9 @@ namespace Cepheus.Controllers
 
         [HttpGet]
         [ActionName("Search")]
-        public Developer Search(string value)
+        public IQueryable<Developer> Search(string value)
         {
-            var result = this._repository.Get(e => e.Name.Contains(value))
-                  .FirstOrDefault();
+            var result = this._repository.Get(e => e.Name.Contains(value));
 
             if (result == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));

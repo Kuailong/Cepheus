@@ -37,7 +37,7 @@ namespace Cepheus.Controllers
         [HttpGet]
         public IQueryable<Game> Get()
         {
-            var result = this._repository.Get(e => e.Developer);
+            var result = this._repository.Get(e => e.Developer, e => e.GameTypes);
 
             if (result == null || result.Count() == 0)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
@@ -48,7 +48,7 @@ namespace Cepheus.Controllers
         [HttpGet]
         public Game Get(int id)
         {
-            var result = this._repository.Get(e => e.GameId == id, e => e.Developer)
+            var result = this._repository.Get(e => e.GameId == id, e => e.Developer, e => e.GameTypes)
                   .FirstOrDefault();
 
             if (result == null)
@@ -59,10 +59,9 @@ namespace Cepheus.Controllers
 
         [HttpGet]
         [ActionName("Search")]
-        public Game Search(string value)
+        public IQueryable<Game> Search(string value)
         {
-            var result = this._repository.Get(e => e.Name.Contains(value))
-                  .FirstOrDefault();
+            var result = this._repository.Get(e => e.Name.Contains(value), e => e.GameTypes, e => e.Developer);
 
             if (result == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));

@@ -18,7 +18,7 @@ namespace Cepheus.Entities.Configurations
             this.Property(e => e.Name)
                 .IsRequired();
 
-            this.Property(e => e.ImagePath)
+            this.Property(e => e.Image)
                 .IsOptional();
 
             this.Property(e => e.Description)

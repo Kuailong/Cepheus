@@ -57,10 +57,9 @@ namespace Cepheus.Controllers
 
         [HttpGet]
         [ActionName("Search")]
-        public GameType Search(string value)
+        public IQueryable<GameType> Search(string value)
         {
-            var result = this._repository.Get(e => e.Type.Contains(value))
-                  .FirstOrDefault();
+            var result = this._repository.Get(e => e.Type.Contains(value));
 
             if (result == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
