@@ -24,7 +24,7 @@ namespace Cepheus.Controllers
 
         public DevelopersController()
         {
-            this._context = new CepheusContext();
+            this._context = new CepheusContext(false);
             this._repository = new Repository<Developer>(this._context);
         }
 

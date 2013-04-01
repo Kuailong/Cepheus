@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 
 namespace Cepheus.Entities
 {
-    public class GameType
+    public class GameTypes
     {
         public int GameTypeId { get; set; }
-        public string Type { get; set; }
-        public string Description { get; set; }
-        public virtual ICollection<Game> Games { get; set; }
+        public int GameId { get; set; }
+        public Game Game { get; set; }
+        public int TypeId { get; set; }
+        public Types GameType { get; set; }
     }
 }

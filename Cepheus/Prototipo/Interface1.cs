@@ -35,7 +35,7 @@ namespace Prototipo
 
         private void SetAddGame()
         {
-            var types = repository.GetMany<GameType>(gameTypesUrl);
+            var types = repository.GetMany<Types>(gameTypesUrl);
             lstBoxTypes.DataSource = types.Content.ToList();
             lstBoxTypes.Refresh();
             lstBoxTypes.DisplayMember = "Type";
@@ -78,7 +78,7 @@ namespace Prototipo
             lblGameDescGet.Text = game.Description;
             lblGameDevelopGet.Text = game.Developer.Name;
             listGetType.Items.Clear();
-            listGetType.Items.AddRange(game.GameTypes.Select(e => e.Description).ToArray());
+            listGetType.Items.AddRange(game.GameTypes.Select(e => e.GameType).ToArray());
             listGetType.DisplayMember = "Name";
             if (game.Image != null)
                 using (var ms = new MemoryStream(game.Image))
@@ -160,9 +160,9 @@ namespace Prototipo
             if (lstBoxTypes.Items == null || lstBoxTypes.Items.Count == 0)
                 return;
 
-            var item = (GameType)lstBoxTypes.SelectedValue;
-            var dataSource = (List<GameType>)lstBoxTypes.DataSource;
-            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<GameType>)lstBoxTypeAdded.DataSource : new List<GameType>();
+            var item = (Types)lstBoxTypes.SelectedValue;
+            var dataSource = (List<Types>)lstBoxTypes.DataSource;
+            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<Types>)lstBoxTypeAdded.DataSource : new List<Types>();
             addDataSource.Add(item);
             dataSource.Remove(item);
             lstBoxTypeAdded.DataSource = addDataSource.ToList();
@@ -177,9 +177,9 @@ namespace Prototipo
             if (lstBoxTypeAdded.DataSource == null || lstBoxTypeAdded.Items.Count == 0)
                 return;
 
-            var item = (GameType)lstBoxTypeAdded.SelectedValue;
-            var dataSource = (List<GameType>)lstBoxTypes.DataSource;
-            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<GameType>)lstBoxTypeAdded.DataSource : new List<GameType>();
+            var item = (Types)lstBoxTypeAdded.SelectedValue;
+            var dataSource = (List<Types>)lstBoxTypes.DataSource;
+            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<Types>)lstBoxTypeAdded.DataSource : new List<Types>();
             dataSource.Add(item);
             addDataSource.Remove(item);
             lstBoxTypeAdded.DataSource = addDataSource.ToList();
@@ -200,10 +200,11 @@ namespace Prototipo
             var descrip = txtAddGameDescrip.Text;
             var develop = (Developer)cbxDesenv.SelectedValue;
 
-            var types = new List<GameType>();
+            var types = new List<GameTypes>();
             foreach (var item in lstBoxTypeAdded.Items)
             {
-                types.Add((GameType)item);
+                var type = (Types)item;
+                types.Add(new GameTypes() { TypeId = type.TypeId });
             }
 
             byte[] image = null;

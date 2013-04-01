@@ -46,10 +46,12 @@
   <ItemGroup>
     <Compile Include="Configurations\DeveloperConfig.cs" />
     <Compile Include="Configurations\GameConfig.cs" />
+    <Compile Include="Configurations\TypesConfig.cs" />
     <Compile Include="Configurations\GameTypeConfig.cs" />
     <Compile Include="Developer.cs" />
     <Compile Include="Game.cs" />
-    <Compile Include="GameType.cs" />
+    <Compile Include="GameTypes.cs" />
+    <Compile Include="Types.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

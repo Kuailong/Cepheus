@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Cepheus.Entities.Configurations
 {
-    public class GameTypeConfig : EntityTypeConfiguration<GameType>
+    public class GameTypeConfig : EntityTypeConfiguration<GameTypes>
     {
         public GameTypeConfig()
         {
@@ -15,11 +15,13 @@ namespace Cepheus.Entities.Configurations
 
             this.HasKey(e => e.GameTypeId);
 
-            this.Property(e => e.Description)
-                .IsRequired();
+            this.HasRequired(e => e.Game)
+                .WithMany()
+                .HasForeignKey(e => e.GameId);
 
-            this.Property(e => e.Type)
-                .IsRequired();
+            this.HasRequired(e => e.GameType)
+                .WithMany()
+                .HasForeignKey(e => e.TypeId);
         }
     }
 }

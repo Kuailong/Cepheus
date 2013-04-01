@@ -131,13 +131,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Repository.cs" />
-    <Compile Include="Migrations\201303291500367_Check.cs" />
-    <Compile Include="Migrations\201303291500367_Check.Designer.cs">
-      <DependentUpon>201303291500367_Check.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201303291515317_ConvertImagePathToByteArray.cs" />
-    <Compile Include="Migrations\201303291515317_ConvertImagePathToByteArray.Designer.cs">
-      <DependentUpon>201303291515317_ConvertImagePathToByteArray.cs</DependentUpon>
+    <Compile Include="Migrations\201304010426423_Check.cs" />
+    <Compile Include="Migrations\201304010426423_Check.Designer.cs">
+      <DependentUpon>201304010426423_Check.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CepheusContext.cs" />
@@ -264,11 +260,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201303291500367_Check.resx">
-      <DependentUpon>201303291500367_Check.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201303291515317_ConvertImagePathToByteArray.resx">
-      <DependentUpon>201303291515317_ConvertImagePathToByteArray.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304010426423_Check.resx">
+      <DependentUpon>201304010426423_Check.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -287,9 +280,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>58586</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:62861/</IISUrl>
+          <IISUrl>http://localhost:62862/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
