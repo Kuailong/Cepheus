@@ -37,7 +37,7 @@ namespace Cepheus.Controllers
         [HttpGet]
         public IQueryable<Game> Get()
         {
-            var result = this._repository.Get(e => e.Developer, e => e.GameTypes);
+            var result = this._repository.Get(e => e.Developer, e => e.GameTypes, e => e.GameTypes.Select(c => c.GameType));
 
             if (result == null || result.Count() == 0)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
@@ -48,7 +48,7 @@ namespace Cepheus.Controllers
         [HttpGet]
         public Game Get(int id)
         {
-            var result = this._repository.Get(e => e.GameId == id, e => e.Developer, e => e.GameTypes)
+            var result = this._repository.Get(e => e.GameId == id, e => e.Developer, e => e.GameTypes, e => e.GameTypes.Select(c => c.GameType))
                   .FirstOrDefault();
 
             if (result == null)
@@ -61,7 +61,7 @@ namespace Cepheus.Controllers
         [ActionName("Search")]
         public IQueryable<Game> Search(string value)
         {
-            var result = this._repository.Get(e => e.Name.Contains(value), e => e.GameTypes, e => e.Developer);
+            var result = this._repository.Get(e => e.Name.Contains(value), e => e.GameTypes, e => e.Developer, e => e.GameTypes.Select(c => c.GameType));
 
             if (result == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
@@ -96,6 +96,14 @@ namespace Cepheus.Controllers
             if (value == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
+            var typeHelper = new GameTypeHelper(new Repository<Types>(this._context));
+
+            if (value.GameTypes != null && value.GameTypes.Count > 0)
+            {
+                typeHelper.FixDuplicationLogDataTypes(value.GameTypes);
+                typeHelper.FixInvalidLogDatas(value);
+            }
+
             this._repository.Add(value);
             this._context.SaveChanges();
 
@@ -109,6 +117,17 @@ namespace Cepheus.Controllers
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
             value.GameId = id;
+            if (value == null)
+                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
+
+            var typeHelper = new GameTypeHelper(new Repository<Types>(this._context));
+
+            if (value.GameTypes != null && value.GameTypes.Count > 0)
+            {
+                typeHelper.FixDuplicationLogDataTypes(value.GameTypes);
+                typeHelper.FixInvalidLogDatas(value);
+            }
+
             this._repository.Update<Game>(value);
             this._context.SaveChanges();
 

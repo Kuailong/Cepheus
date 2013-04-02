@@ -38,7 +38,7 @@ namespace Prototipo
             var types = repository.GetMany<Types>(gameTypesUrl);
             lstBoxTypes.DataSource = types.Content.ToList();
             lstBoxTypes.Refresh();
-            lstBoxTypes.DisplayMember = "Type";
+            lstBoxTypes.DisplayMember = "Name";
             lstBoxTypes.SelectedIndex = 0;
 
             var develops = repository.GetMany<Developer>(developsUrl);
@@ -62,7 +62,10 @@ namespace Prototipo
             log.RegisterLog(games, txtLog, gamesUrl);
 
             if (!games.IsSuccessStatusCode)
-                throw new Exception("Games not found");
+            {
+                MessageBox.Show("Não existe nenhum game cadastrado");
+                return;
+            }
 
             lstBoxSearch.Items.Clear();
             lstBoxSearch.DataSource = games.Content.ToList();
@@ -166,7 +169,7 @@ namespace Prototipo
             addDataSource.Add(item);
             dataSource.Remove(item);
             lstBoxTypeAdded.DataSource = addDataSource.ToList();
-            lstBoxTypeAdded.DisplayMember = "Type";
+            lstBoxTypeAdded.DisplayMember = "Name";
             lstBoxTypes.DataSource = dataSource.ToList();
             lstBoxTypeAdded.Refresh();
             lstBoxTypes.Refresh();
@@ -183,7 +186,7 @@ namespace Prototipo
             dataSource.Add(item);
             addDataSource.Remove(item);
             lstBoxTypeAdded.DataSource = addDataSource.ToList();
-            lstBoxTypeAdded.DisplayMember = "Type";
+            lstBoxTypeAdded.DisplayMember = "Name";
             lstBoxTypes.DataSource = dataSource.ToList();
             lstBoxTypeAdded.Refresh();
             lstBoxTypes.Refresh();
@@ -199,13 +202,6 @@ namespace Prototipo
             var name = txtAddGameName.Text;
             var descrip = txtAddGameDescrip.Text;
             var develop = (Developer)cbxDesenv.SelectedValue;
-
-            var types = new List<GameTypes>();
-            foreach (var item in lstBoxTypeAdded.Items)
-            {
-                var type = (Types)item;
-                types.Add(new GameTypes() { TypeId = type.TypeId });
-            }
 
             byte[] image = null;
             if(!string.IsNullOrEmpty(txtImage.Text))
@@ -223,10 +219,16 @@ namespace Prototipo
                 Name = name,
                 Description = descrip,
                 Image = image,
-                GameTypes = types,
+                GameTypes = new List<GameTypes>(),
                 Developer = developId == 0 ? develop : null,
                 DeveloperId = developId
             };
+
+            foreach (var item in lstBoxTypeAdded.Items)
+            {
+                var type = (Types)item;
+                game.GameTypes.Add(new GameTypes() { GameType = type });
+            }
 
             var result = repository.Post<Game>(gamesUrl, game);
             if(result.IsSuccessStatusCode)
