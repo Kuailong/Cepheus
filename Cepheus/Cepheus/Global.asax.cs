@@ -35,22 +35,12 @@ namespace Cepheus
             //{
             //    Database.SetInitializer(new DropCreateDatabaseAlways<CepheusContext>());
             //    var context = new CepheusContext();
-            //    var repository = new Repository<Game>(context);
-            //    var develop = new Game()
-            //    {
-            //        Developer = new Developer()
+            //    var repository = new Repository<Developer>(context);
+            //    var develop = new Developer()
             //        {
             //            Name = "Valve Corporation",
-            //            Description = "ValeRules"
-            //        },
-            //        Name = "CS 1.6",
-            //        ImagePath = "null",
-            //        GameTypes = new List<GameType>()
-            //        {
-            //            new GameType() { Type = "Multiplayer", Description = "mutli" },
-            //            new GameType() { Type = "SinglePlayer", Description = "single" }
-            //        }
-            //    };
+            //            Description = "ValveRules"
+            //        };
 
             //    repository.Add(develop);
             //    context.SaveChanges();

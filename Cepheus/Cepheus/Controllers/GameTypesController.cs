@@ -15,7 +15,7 @@ namespace Cepheus.Controllers
     {
         #region Private Properties
 
-        readonly Repository<Types> _repository;
+        readonly Repository<GameType> _repository;
         readonly DbContext _context; 
 
         #endregion
@@ -25,7 +25,7 @@ namespace Cepheus.Controllers
         public GameTypesController()
         {
             this._context = new CepheusContext(false);
-            this._repository = new Repository<Types>(this._context);
+            this._repository = new Repository<GameType>(this._context);
         }
 
         #endregion
@@ -33,20 +33,20 @@ namespace Cepheus.Controllers
         #region Actions
 
         [HttpGet]
-        public IQueryable<Types> Get()
+        public IQueryable<GameType> Get()
         {
             var result = this._repository.Get();
 
             if (result == null || result.Count() == 0)
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.NotFound));
+                Request.CreateErrorResponse(HttpStatusCode.NotFound, new Exception("Nenhum gameType"));
 
             return result;
         }
 
         [HttpGet]
-        public Types Get(int id)
+        public GameType Get(int id)
         {
-            var result = this._repository.Get(e => e.TypeId == id)
+            var result = this._repository.Get(e => e.GameTypeId == id)
                   .FirstOrDefault();
 
             if (result == null)
@@ -57,7 +57,7 @@ namespace Cepheus.Controllers
 
         [HttpGet]
         [ActionName("Search")]
-        public IQueryable<Types> Search(string value)
+        public IQueryable<GameType> Search(string value)
         {
             var result = this._repository.Get(e => e.Name.Contains(value));
 
@@ -68,7 +68,7 @@ namespace Cepheus.Controllers
         }
 
         [HttpPost]
-        public HttpResponseMessage Post(Types value)
+        public HttpResponseMessage Post(GameType value)
         {
             if (value == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
@@ -76,26 +76,26 @@ namespace Cepheus.Controllers
             this._repository.Add(value);
             this._context.SaveChanges();
 
-            return Request.CreateResponse<Types>(HttpStatusCode.Created, value);
+            return Request.CreateResponse<GameType>(HttpStatusCode.Created, value);
         }
 
         [HttpPut]
-        public HttpResponseMessage Put(int id, Types value)
+        public HttpResponseMessage Put(int id, GameType value)
         {
             if (value == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
-            value.TypeId = id;
-            this._repository.Update<Types>(value);
+            value.GameTypeId = id;
+            this._repository.Update<GameType>(value);
             this._context.SaveChanges();
 
-            return Request.CreateResponse<Types>(HttpStatusCode.OK, value);
+            return Request.CreateResponse<GameType>(HttpStatusCode.OK, value);
         }
 
         [HttpDelete]
         public HttpResponseMessage Delete(int id)
         {
-            var value = this._repository.Get(e => e.TypeId == id).SingleOrDefault();
+            var value = this._repository.Get(e => e.GameTypeId == id).SingleOrDefault();
 
             if (value == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));

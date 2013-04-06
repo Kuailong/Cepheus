@@ -24,6 +24,7 @@ namespace Prototipo
         private string gameTypesUrl = "http://localhost/Cepheus/GameTypes";
         private string developsUrl = "http://localhost/Cepheus/Developers";
         private string localFilePath = @"c:\temp";
+        private Game lastChecked = new Game();
 
         public Interface1()
         {
@@ -35,7 +36,7 @@ namespace Prototipo
 
         private void SetAddGame()
         {
-            var types = repository.GetMany<Types>(gameTypesUrl);
+            var types = repository.GetMany<GameType>(gameTypesUrl);
             lstBoxTypes.DataSource = types.Content.ToList();
             lstBoxTypes.Refresh();
             lstBoxTypes.DisplayMember = "Name";
@@ -81,7 +82,7 @@ namespace Prototipo
             lblGameDescGet.Text = game.Description;
             lblGameDevelopGet.Text = game.Developer.Name;
             listGetType.Items.Clear();
-            listGetType.Items.AddRange(game.GameTypes.Select(e => e.GameType).ToArray());
+            listGetType.Items.AddRange(game.GameAndTypes.Select(e => e.GameType).ToArray());
             listGetType.DisplayMember = "Name";
             if (game.Image != null)
                 using (var ms = new MemoryStream(game.Image))
@@ -90,21 +91,27 @@ namespace Prototipo
                 }
         }
 
-        private void button14_Click(object sender, EventArgs e)
+        private void btnAddDevelop_Click(object sender, EventArgs e)
         {
             var addDesenv = new AddDesenvolvedora();
             addDesenv.ShowDialog();
-            var desenvName = new Developer() { Name = addDesenv.NameDesenv, Description = addDesenv.DescriptDesenv };
-            cbxDesenv.Items.Add(desenvName);
-            cbxDesenv.SelectedText = desenvName.Name;
+            var desenv = new Developer() { Name = addDesenv.NameDesenv, Description = addDesenv.DescriptDesenv };
+            var ds = (List<Developer>)cbxDesenv.DataSource;
+            ds.Add(desenv);
+            cbxDesenv.DataSource = ds.ToList();
+            cbxDesenv.Refresh();
+            cbxDesenv.SelectedItem = ds.Where(f => f == desenv).FirstOrDefault();
         }
 
-        private void button15_Click(object sender, EventArgs e)
+        private void btnAddGameType_Click(object sender, EventArgs e)
         {
             var addType = new AddType();
             addType.ShowDialog();
-            var nameType = addType.NameType;
-            lstBoxTypeAdded.Items.Add(nameType);
+            var type = new GameType() { Name = addType.NameType, Description = addType.NameType };
+            var ds = (List<GameType>)lstBoxTypeAdded.DataSource;
+            ds.Add(type);
+            lstBoxTypeAdded.DataSource = ds.ToList();
+            lstBoxTypeAdded.Refresh();
         }
 
         private void relatórioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -126,11 +133,14 @@ namespace Prototipo
         private void gameId_SelectedIndexChanged(object sender, EventArgs e)
         {
             var itemSelected = (Game)lstBoxSearch.SelectedValue;
+            if (itemSelected.GameId == lastChecked.GameId)
+                return;
             var url = string.Format("{0}/{1}", gamesUrl, itemSelected.GameId);
             var result = repository.Get<Game>(url);
             SetGetGame(result.Content);
             var log = new Log();
             log.RegisterLog(result, txtLog, url);
+            lastChecked = result.Content;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -140,9 +150,9 @@ namespace Prototipo
             var result = repository.GetMany<Game>(url);
             if (!result.IsSuccessStatusCode)
             {
-                MessageBox.Show("Não foram encontrados jogos com essa busca: {0}", text);
+                if (!string.IsNullOrEmpty(text))
+                    MessageBox.Show("Não foram encontrados jogos com essa busca: " + text);
                 result = repository.GetMany<Game>(gamesUrl);
-                return;
             }
 
             var log = new Log();
@@ -163,9 +173,9 @@ namespace Prototipo
             if (lstBoxTypes.Items == null || lstBoxTypes.Items.Count == 0)
                 return;
 
-            var item = (Types)lstBoxTypes.SelectedValue;
-            var dataSource = (List<Types>)lstBoxTypes.DataSource;
-            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<Types>)lstBoxTypeAdded.DataSource : new List<Types>();
+            var item = (GameType)lstBoxTypes.SelectedValue;
+            var dataSource = (List<GameType>)lstBoxTypes.DataSource;
+            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<GameType>)lstBoxTypeAdded.DataSource : new List<GameType>();
             addDataSource.Add(item);
             dataSource.Remove(item);
             lstBoxTypeAdded.DataSource = addDataSource.ToList();
@@ -180,9 +190,9 @@ namespace Prototipo
             if (lstBoxTypeAdded.DataSource == null || lstBoxTypeAdded.Items.Count == 0)
                 return;
 
-            var item = (Types)lstBoxTypeAdded.SelectedValue;
-            var dataSource = (List<Types>)lstBoxTypes.DataSource;
-            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<Types>)lstBoxTypeAdded.DataSource : new List<Types>();
+            var item = (GameType)lstBoxTypeAdded.SelectedValue;
+            var dataSource = (List<GameType>)lstBoxTypes.DataSource;
+            var addDataSource = lstBoxTypeAdded.DataSource != null ? (List<GameType>)lstBoxTypeAdded.DataSource : new List<GameType>();
             dataSource.Add(item);
             addDataSource.Remove(item);
             lstBoxTypeAdded.DataSource = addDataSource.ToList();
@@ -194,7 +204,10 @@ namespace Prototipo
 
         private void btnAddImage_Click(object sender, EventArgs e)
         {
+            var fileDialog = new OpenFileDialog();
 
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+                txtImage.Text = fileDialog.FileName;
         }
 
         private void btnAddGame_Click(object sender, EventArgs e)
@@ -219,15 +232,15 @@ namespace Prototipo
                 Name = name,
                 Description = descrip,
                 Image = image,
-                GameTypes = new List<GameTypes>(),
+                GameAndTypes = new List<GameAndType>(),
                 Developer = developId == 0 ? develop : null,
                 DeveloperId = developId
             };
 
             foreach (var item in lstBoxTypeAdded.Items)
             {
-                var type = (Types)item;
-                game.GameTypes.Add(new GameTypes() { GameType = type });
+                var type = (GameType)item;
+                game.GameAndTypes.Add(new GameAndType() { GameType = type });
             }
 
             var result = repository.Post<Game>(gamesUrl, game);

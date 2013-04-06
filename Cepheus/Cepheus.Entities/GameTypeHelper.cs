@@ -10,7 +10,7 @@ namespace Cepheus.Infrastructure
     {
         #region Private Properties
 
-        private IEnumerable<GameType> _currentGameType;
+        private IEnumerable<GameType> _currentData;
 
         #endregion
 
@@ -18,24 +18,25 @@ namespace Cepheus.Infrastructure
 
         public GameTypeHelper(Repository<GameType> repository)
         {
-            this._currentGameType = repository.Get();
+            this._currentData = repository.Get();
         }
 
         #endregion
 
         #region Public Methods
 
-        public void FixDuplicationGameTypes(ICollection<GameAndType> gameTypes)
+        public void FixDuplicationDatas(ICollection<GameAndType> items)
         {
-            foreach (var item in gameTypes)
-                this.FixDuplicationGameType(item);
+
+            foreach (var item in items)
+                this.FixDuplicationData(item);
         }
 
-        public void FixDuplicationGameType(GameAndType item)
+        public void FixDuplicationData(GameAndType item)
         {
-            if (item.GameType != null && this.HasGameType(item.GameType))
+            if (item.GameType != null && this.HasLogDataType(item.GameType))
             {
-                item.GameTypeId = this._currentGameType
+                item.GameTypeId = this._currentData
                     .Where(c => c.Description == item.GameType.Description)
                     .First()
                     .GameTypeId;
@@ -44,22 +45,22 @@ namespace Cepheus.Infrastructure
             }
         }
 
-        public void FixInvalidDatas(Game game)
+        public void FixInvalidData(Game game)
         {
-            var invalidDatas = new List<GameAndType>();
+            var invalidLogDatas = new List<GameAndType>();
 
             foreach (var item in game.GameAndTypes)
             {
                 if (!IsValidData(item))
-                    invalidDatas.Add(item);
+                    invalidLogDatas.Add(item);
 
                 if (item.GameTypeId != 0 &&
                     item.GameType != null &&
-                    item.GameType.Description != this._currentGameType.FirstOrDefault(c => c.GameTypeId == item.GameTypeId).Description)
+                    item.GameType.Description != this._currentData.FirstOrDefault(c => c.GameTypeId == item.GameTypeId).Description)
                     item.GameType = null;
             }
 
-            invalidDatas.ForEach(i => game.GameAndTypes.Remove(i));
+            invalidLogDatas.ForEach(i => game.GameAndTypes.Remove(i));
         }
 
         public bool IsValidData(GameAndType item)
@@ -67,22 +68,22 @@ namespace Cepheus.Infrastructure
             if (item.GameTypeId != 0)
                 return true;
 
-            if (item.GameTypeId == 0 && item.GameType != null && this.IsValidGameType(item.GameType))
+            if (item.GameTypeId == 0 && item.GameType != null && this.IsValidDataType(item.GameType))
                 return true;
 
             return false;
         }
 
-        public bool HasGameType(GameType item)
+        public bool HasLogDataType(GameType item)
         {
-            return this._currentGameType
+            return this._currentData
                 .Select(e => e.Description)
                 .Contains(item.Description);
         }
 
-        public bool IsValidGameType(GameType item)
+        public bool IsValidDataType(GameType item)
         {
-            return !string.IsNullOrWhiteSpace(item.Description);
+            return !string.IsNullOrEmpty(item.Description) && !string.IsNullOrWhiteSpace(item.Description);
         }
 
         #endregion

@@ -5,13 +5,13 @@ namespace Cepheus.Migrations
     using System.Data.Entity.Migrations.Infrastructure;
     using System.Resources;
     
-    public sealed partial class Check : IMigrationMetadata
+    public sealed partial class CreateTables : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Check));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTables));
         
         string IMigrationMetadata.Id
         {
-            get { return "201304010426423_Check"; }
+            get { return "201304060345472_CreateTables"; }
         }
         
         string IMigrationMetadata.Source

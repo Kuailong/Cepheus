@@ -28,6 +28,7 @@ namespace Prototipo
         private void button1_Click(object sender, EventArgs e)
         {
             this.NameDesenv = txtDesenvolvedoraName.Text;
+            this.DescriptDesenv = txtDevelpDescrip.Text;
             this.Close();
         }
     }

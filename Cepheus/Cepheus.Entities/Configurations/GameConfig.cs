@@ -28,7 +28,7 @@ namespace Cepheus.Entities.Configurations
                 .WithMany()
                 .HasForeignKey(e => e.DeveloperId);
 
-            this.HasMany(e => e.GameTypes)
+            this.HasMany(e => e.GameAndTypes)
                 .WithRequired(e => e.Game)
                 .HasForeignKey(e => e.GameId);
         }

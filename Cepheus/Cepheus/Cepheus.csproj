@@ -132,9 +132,9 @@
     </Compile>
     <Compile Include="Infrastructure\GameTypeHelper.cs" />
     <Compile Include="Infrastructure\Repository.cs" />
-    <Compile Include="Migrations\201304010426423_Check.cs" />
-    <Compile Include="Migrations\201304010426423_Check.Designer.cs">
-      <DependentUpon>201304010426423_Check.cs</DependentUpon>
+    <Compile Include="Migrations\201304060345472_CreateTables.cs" />
+    <Compile Include="Migrations\201304060345472_CreateTables.Designer.cs">
+      <DependentUpon>201304060345472_CreateTables.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CepheusContext.cs" />
@@ -261,8 +261,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201304010426423_Check.resx">
-      <DependentUpon>201304010426423_Check.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304060345472_CreateTables.resx">
+      <DependentUpon>201304060345472_CreateTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

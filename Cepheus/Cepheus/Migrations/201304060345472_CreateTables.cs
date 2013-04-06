@@ -3,7 +3,7 @@ namespace Cepheus.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Check : DbMigration
+    public partial class CreateTables : DbMigration
     {
         public override void Up()
         {
@@ -22,28 +22,28 @@ namespace Cepheus.Migrations
                 .Index(t => t.DeveloperId);
             
             CreateTable(
+                "dbo.GameAndTypes",
+                c => new
+                    {
+                        GameAndTypeId = c.Int(nullable: false, identity: true),
+                        GameId = c.Int(nullable: false),
+                        GameTypeId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.GameAndTypeId)
+                .ForeignKey("dbo.GameTypes", t => t.GameTypeId, cascadeDelete: true)
+                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
+                .Index(t => t.GameTypeId)
+                .Index(t => t.GameId);
+            
+            CreateTable(
                 "dbo.GameTypes",
                 c => new
                     {
                         GameTypeId = c.Int(nullable: false, identity: true),
-                        GameId = c.Int(nullable: false),
-                        TypeId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.GameTypeId)
-                .ForeignKey("dbo.Types", t => t.TypeId, cascadeDelete: true)
-                .ForeignKey("dbo.Games", t => t.GameId, cascadeDelete: true)
-                .Index(t => t.TypeId)
-                .Index(t => t.GameId);
-            
-            CreateTable(
-                "dbo.Types",
-                c => new
-                    {
-                        TypeId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
                         Description = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.TypeId);
+                .PrimaryKey(t => t.GameTypeId);
             
             CreateTable(
                 "dbo.Developers",
@@ -59,15 +59,15 @@ namespace Cepheus.Migrations
         
         public override void Down()
         {
-            DropIndex("dbo.GameTypes", new[] { "GameId" });
-            DropIndex("dbo.GameTypes", new[] { "TypeId" });
+            DropIndex("dbo.GameAndTypes", new[] { "GameId" });
+            DropIndex("dbo.GameAndTypes", new[] { "GameTypeId" });
             DropIndex("dbo.Games", new[] { "DeveloperId" });
-            DropForeignKey("dbo.GameTypes", "GameId", "dbo.Games");
-            DropForeignKey("dbo.GameTypes", "TypeId", "dbo.Types");
+            DropForeignKey("dbo.GameAndTypes", "GameId", "dbo.Games");
+            DropForeignKey("dbo.GameAndTypes", "GameTypeId", "dbo.GameTypes");
             DropForeignKey("dbo.Games", "DeveloperId", "dbo.Developers");
             DropTable("dbo.Developers");
-            DropTable("dbo.Types");
             DropTable("dbo.GameTypes");
+            DropTable("dbo.GameAndTypes");
             DropTable("dbo.Games");
         }
     }

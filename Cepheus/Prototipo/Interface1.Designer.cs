@@ -529,12 +529,13 @@
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(132, 133);
+            this.pictureBox1.MaximumSize = new System.Drawing.Size(284, 226);
+            this.pictureBox1.MinimumSize = new System.Drawing.Size(284, 226);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(284, 226);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 33;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Visible = false;
             // 
             // label7
             // 
@@ -661,7 +662,7 @@
             this.btnAddNewType.TabIndex = 16;
             this.btnAddNewType.Text = "Adicionar Tipo";
             this.btnAddNewType.UseVisualStyleBackColor = true;
-            this.btnAddNewType.Click += new System.EventHandler(this.button15_Click);
+            this.btnAddNewType.Click += new System.EventHandler(this.btnAddGameType_Click);
             // 
             // btnAddNewDevelop
             // 
@@ -671,7 +672,7 @@
             this.btnAddNewDevelop.TabIndex = 15;
             this.btnAddNewDevelop.Text = "Adicionar Novo...";
             this.btnAddNewDevelop.UseVisualStyleBackColor = true;
-            this.btnAddNewDevelop.Click += new System.EventHandler(this.button14_Click);
+            this.btnAddNewDevelop.Click += new System.EventHandler(this.btnAddDevelop_Click);
             // 
             // btnAddGame
             // 
