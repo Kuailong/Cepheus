@@ -30,24 +30,23 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Interface1));
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.listBox11 = new System.Windows.Forms.ListBox();
-            this.button16 = new System.Windows.Forms.Button();
-            this.button17 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button9 = new System.Windows.Forms.Button();
-            this.textBox10 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.listGames2 = new System.Windows.Forms.ListBox();
+            this.btnCreateType = new System.Windows.Forms.Button();
+            this.btnAddDevelop = new System.Windows.Forms.Button();
+            this.btnSaveChange = new System.Windows.Forms.Button();
+            this.btnNewImage = new System.Windows.Forms.Button();
+            this.txtImageAlt = new System.Windows.Forms.TextBox();
+            this.txtSearch2 = new System.Windows.Forms.TextBox();
+            this.txtGameDescrip = new System.Windows.Forms.TextBox();
+            this.txtGameName = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
-            this.listBox5 = new System.Windows.Forms.ListBox();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.listBox4 = new System.Windows.Forms.ListBox();
+            this.btnRemoveType2 = new System.Windows.Forms.Button();
+            this.btnAddType2 = new System.Windows.Forms.Button();
+            this.listAddType = new System.Windows.Forms.ListBox();
+            this.btnSearch2 = new System.Windows.Forms.Button();
+            this.listType = new System.Windows.Forms.ListBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.cbxDevelop = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -70,7 +69,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listGetType = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.imgGame = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lblGameDevelopGet = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -111,7 +110,7 @@
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgGame)).BeginInit();
             this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage5.SuspendLayout();
@@ -120,24 +119,23 @@
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.listBox11);
-            this.tabPage4.Controls.Add(this.button16);
-            this.tabPage4.Controls.Add(this.button17);
-            this.tabPage4.Controls.Add(this.button8);
-            this.tabPage4.Controls.Add(this.button9);
-            this.tabPage4.Controls.Add(this.textBox10);
-            this.tabPage4.Controls.Add(this.textBox7);
-            this.tabPage4.Controls.Add(this.textBox8);
-            this.tabPage4.Controls.Add(this.textBox9);
+            this.tabPage4.Controls.Add(this.listGames2);
+            this.tabPage4.Controls.Add(this.btnCreateType);
+            this.tabPage4.Controls.Add(this.btnAddDevelop);
+            this.tabPage4.Controls.Add(this.btnSaveChange);
+            this.tabPage4.Controls.Add(this.btnNewImage);
+            this.tabPage4.Controls.Add(this.txtImageAlt);
+            this.tabPage4.Controls.Add(this.txtSearch2);
+            this.tabPage4.Controls.Add(this.txtGameDescrip);
+            this.tabPage4.Controls.Add(this.txtGameName);
             this.tabPage4.Controls.Add(this.label15);
-            this.tabPage4.Controls.Add(this.button10);
-            this.tabPage4.Controls.Add(this.button11);
-            this.tabPage4.Controls.Add(this.listBox5);
-            this.tabPage4.Controls.Add(this.comboBox4);
-            this.tabPage4.Controls.Add(this.button7);
-            this.tabPage4.Controls.Add(this.listBox4);
+            this.tabPage4.Controls.Add(this.btnRemoveType2);
+            this.tabPage4.Controls.Add(this.btnAddType2);
+            this.tabPage4.Controls.Add(this.listAddType);
+            this.tabPage4.Controls.Add(this.btnSearch2);
+            this.tabPage4.Controls.Add(this.listType);
             this.tabPage4.Controls.Add(this.label11);
-            this.tabPage4.Controls.Add(this.comboBox5);
+            this.tabPage4.Controls.Add(this.cbxDevelop);
             this.tabPage4.Controls.Add(this.label12);
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label14);
@@ -148,77 +146,82 @@
             this.tabPage4.Text = "Alterar";
             this.tabPage4.UseVisualStyleBackColor = true;
             // 
-            // listBox11
+            // listGames2
             // 
-            this.listBox11.FormattingEnabled = true;
-            this.listBox11.Location = new System.Drawing.Point(6, 32);
-            this.listBox11.Name = "listBox11";
-            this.listBox11.Size = new System.Drawing.Size(120, 303);
-            this.listBox11.TabIndex = 45;
+            this.listGames2.FormattingEnabled = true;
+            this.listGames2.Location = new System.Drawing.Point(6, 32);
+            this.listGames2.Name = "listGames2";
+            this.listGames2.Size = new System.Drawing.Size(120, 303);
+            this.listGames2.TabIndex = 45;
+            this.listGames2.SelectedIndexChanged += new System.EventHandler(this.changeGameId_SelectedIndexChanged);
             // 
-            // button16
+            // btnCreateType
             // 
-            this.button16.Location = new System.Drawing.Point(305, 202);
-            this.button16.Name = "button16";
-            this.button16.Size = new System.Drawing.Size(83, 23);
-            this.button16.TabIndex = 44;
-            this.button16.Text = "Adicionar Tipo";
-            this.button16.UseVisualStyleBackColor = true;
+            this.btnCreateType.Location = new System.Drawing.Point(305, 202);
+            this.btnCreateType.Name = "btnCreateType";
+            this.btnCreateType.Size = new System.Drawing.Size(83, 23);
+            this.btnCreateType.TabIndex = 44;
+            this.btnCreateType.Text = "Adicionar Tipo";
+            this.btnCreateType.UseVisualStyleBackColor = true;
+            this.btnCreateType.Click += new System.EventHandler(this.btnCreateType_Click);
             // 
-            // button17
+            // btnAddDevelop
             // 
-            this.button17.Location = new System.Drawing.Point(367, 105);
-            this.button17.Name = "button17";
-            this.button17.Size = new System.Drawing.Size(101, 23);
-            this.button17.TabIndex = 43;
-            this.button17.Text = "Adicionar Novo...";
-            this.button17.UseVisualStyleBackColor = true;
+            this.btnAddDevelop.Location = new System.Drawing.Point(367, 105);
+            this.btnAddDevelop.Name = "btnAddDevelop";
+            this.btnAddDevelop.Size = new System.Drawing.Size(101, 23);
+            this.btnAddDevelop.TabIndex = 43;
+            this.btnAddDevelop.Text = "Adicionar Novo...";
+            this.btnAddDevelop.UseVisualStyleBackColor = true;
+            this.btnAddDevelop.Click += new System.EventHandler(this.btnAddDevelop_Click_Change);
             // 
-            // button8
+            // btnSaveChange
             // 
-            this.button8.Location = new System.Drawing.Point(6, 341);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(75, 23);
-            this.button8.TabIndex = 42;
-            this.button8.Text = "Salvar";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnSaveChange.Location = new System.Drawing.Point(6, 341);
+            this.btnSaveChange.Name = "btnSaveChange";
+            this.btnSaveChange.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveChange.TabIndex = 42;
+            this.btnSaveChange.Text = "Salvar";
+            this.btnSaveChange.UseVisualStyleBackColor = true;
+            this.btnSaveChange.Click += new System.EventHandler(this.btnSaveChange_Click);
             // 
-            // button9
+            // btnNewImage
             // 
-            this.button9.Location = new System.Drawing.Point(442, 256);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(75, 23);
-            this.button9.TabIndex = 41;
-            this.button9.Text = "Escolher";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnNewImage.Location = new System.Drawing.Point(442, 256);
+            this.btnNewImage.Name = "btnNewImage";
+            this.btnNewImage.Size = new System.Drawing.Size(75, 23);
+            this.btnNewImage.TabIndex = 41;
+            this.btnNewImage.Text = "Alterar";
+            this.btnNewImage.UseVisualStyleBackColor = true;
+            this.btnNewImage.Click += new System.EventHandler(this.btnNewImage_Click);
             // 
-            // textBox10
+            // txtImageAlt
             // 
-            this.textBox10.Location = new System.Drawing.Point(195, 258);
-            this.textBox10.Name = "textBox10";
-            this.textBox10.Size = new System.Drawing.Size(241, 20);
-            this.textBox10.TabIndex = 40;
+            this.txtImageAlt.Location = new System.Drawing.Point(195, 258);
+            this.txtImageAlt.Name = "txtImageAlt";
+            this.txtImageAlt.Size = new System.Drawing.Size(241, 20);
+            this.txtImageAlt.TabIndex = 40;
             // 
-            // textBox7
+            // txtSearch2
             // 
-            this.textBox7.Location = new System.Drawing.Point(6, 6);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(212, 20);
-            this.textBox7.TabIndex = 34;
+            this.txtSearch2.Location = new System.Drawing.Point(6, 6);
+            this.txtSearch2.Name = "txtSearch2";
+            this.txtSearch2.Size = new System.Drawing.Size(212, 20);
+            this.txtSearch2.TabIndex = 34;
             // 
-            // textBox8
+            // txtGameDescrip
             // 
-            this.textBox8.Location = new System.Drawing.Point(206, 72);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(241, 20);
-            this.textBox8.TabIndex = 28;
+            this.txtGameDescrip.Location = new System.Drawing.Point(206, 72);
+            this.txtGameDescrip.Name = "txtGameDescrip";
+            this.txtGameDescrip.Size = new System.Drawing.Size(241, 20);
+            this.txtGameDescrip.TabIndex = 28;
             // 
-            // textBox9
+            // txtGameName
             // 
-            this.textBox9.Location = new System.Drawing.Point(206, 43);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(241, 20);
-            this.textBox9.TabIndex = 26;
+            this.txtGameName.Location = new System.Drawing.Point(206, 43);
+            this.txtGameName.Name = "txtGameName";
+            this.txtGameName.Size = new System.Drawing.Size(241, 20);
+            this.txtGameName.TabIndex = 26;
             // 
             // label15
             // 
@@ -229,56 +232,51 @@
             this.label15.TabIndex = 39;
             this.label15.Text = "Imagem";
             // 
-            // button10
+            // btnRemoveType2
             // 
-            this.button10.Location = new System.Drawing.Point(305, 173);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(83, 23);
-            this.button10.TabIndex = 38;
-            this.button10.Text = "<<";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnRemoveType2.Location = new System.Drawing.Point(305, 173);
+            this.btnRemoveType2.Name = "btnRemoveType2";
+            this.btnRemoveType2.Size = new System.Drawing.Size(83, 23);
+            this.btnRemoveType2.TabIndex = 38;
+            this.btnRemoveType2.Text = "<<";
+            this.btnRemoveType2.UseVisualStyleBackColor = true;
+            this.btnRemoveType2.Click += new System.EventHandler(this.btnRemoveType2_Click);
             // 
-            // button11
+            // btnAddType2
             // 
-            this.button11.Location = new System.Drawing.Point(305, 143);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(83, 23);
-            this.button11.TabIndex = 37;
-            this.button11.Text = ">>";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnAddType2.Location = new System.Drawing.Point(305, 143);
+            this.btnAddType2.Name = "btnAddType2";
+            this.btnAddType2.Size = new System.Drawing.Size(83, 23);
+            this.btnAddType2.TabIndex = 37;
+            this.btnAddType2.Text = ">>";
+            this.btnAddType2.UseVisualStyleBackColor = true;
+            this.btnAddType2.Click += new System.EventHandler(this.btnAddType2_Click);
             // 
-            // listBox5
+            // listAddType
             // 
-            this.listBox5.FormattingEnabled = true;
-            this.listBox5.Location = new System.Drawing.Point(397, 143);
-            this.listBox5.Name = "listBox5";
-            this.listBox5.Size = new System.Drawing.Size(120, 95);
-            this.listBox5.TabIndex = 36;
+            this.listAddType.FormattingEnabled = true;
+            this.listAddType.Location = new System.Drawing.Point(397, 143);
+            this.listAddType.Name = "listAddType";
+            this.listAddType.Size = new System.Drawing.Size(120, 95);
+            this.listAddType.TabIndex = 36;
             // 
-            // comboBox4
+            // btnSearch2
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Location = new System.Drawing.Point(427, 5);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(142, 21);
-            this.comboBox4.TabIndex = 35;
+            this.btnSearch2.Location = new System.Drawing.Point(224, 4);
+            this.btnSearch2.Name = "btnSearch2";
+            this.btnSearch2.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch2.TabIndex = 33;
+            this.btnSearch2.Text = "Pesquisar";
+            this.btnSearch2.UseVisualStyleBackColor = true;
+            this.btnSearch2.Click += new System.EventHandler(this.btnSearch2_Click);
             // 
-            // button7
+            // listType
             // 
-            this.button7.Location = new System.Drawing.Point(224, 4);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(75, 23);
-            this.button7.TabIndex = 33;
-            this.button7.Text = "Pesquisar";
-            this.button7.UseVisualStyleBackColor = true;
-            // 
-            // listBox4
-            // 
-            this.listBox4.FormattingEnabled = true;
-            this.listBox4.Location = new System.Drawing.Point(179, 143);
-            this.listBox4.Name = "listBox4";
-            this.listBox4.Size = new System.Drawing.Size(120, 95);
-            this.listBox4.TabIndex = 32;
+            this.listType.FormattingEnabled = true;
+            this.listType.Location = new System.Drawing.Point(179, 143);
+            this.listType.Name = "listType";
+            this.listType.Size = new System.Drawing.Size(120, 95);
+            this.listType.TabIndex = 32;
             // 
             // label11
             // 
@@ -289,13 +287,13 @@
             this.label11.TabIndex = 31;
             this.label11.Text = "Tipo";
             // 
-            // comboBox5
+            // cbxDevelop
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Location = new System.Drawing.Point(236, 107);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(121, 21);
-            this.comboBox5.TabIndex = 30;
+            this.cbxDevelop.FormattingEnabled = true;
+            this.cbxDevelop.Location = new System.Drawing.Point(236, 107);
+            this.cbxDevelop.Name = "cbxDevelop";
+            this.cbxDevelop.Size = new System.Drawing.Size(121, 21);
+            this.cbxDevelop.TabIndex = 30;
             // 
             // label12
             // 
@@ -488,7 +486,7 @@
             // 
             this.tabPage2.Controls.Add(this.listGetType);
             this.tabPage2.Controls.Add(this.label8);
-            this.tabPage2.Controls.Add(this.pictureBox1);
+            this.tabPage2.Controls.Add(this.imgGame);
             this.tabPage2.Controls.Add(this.label7);
             this.tabPage2.Controls.Add(this.lblGameDevelopGet);
             this.tabPage2.Controls.Add(this.label9);
@@ -525,17 +523,17 @@
             this.label8.TabIndex = 34;
             this.label8.Text = "Tipo";
             // 
-            // pictureBox1
+            // imgGame
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(132, 133);
-            this.pictureBox1.MaximumSize = new System.Drawing.Size(284, 226);
-            this.pictureBox1.MinimumSize = new System.Drawing.Size(284, 226);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(284, 226);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 33;
-            this.pictureBox1.TabStop = false;
+            this.imgGame.Image = ((System.Drawing.Image)(resources.GetObject("imgGame.Image")));
+            this.imgGame.Location = new System.Drawing.Point(132, 133);
+            this.imgGame.MaximumSize = new System.Drawing.Size(284, 226);
+            this.imgGame.MinimumSize = new System.Drawing.Size(284, 226);
+            this.imgGame.Name = "imgGame";
+            this.imgGame.Size = new System.Drawing.Size(284, 226);
+            this.imgGame.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imgGame.TabIndex = 33;
+            this.imgGame.TabStop = false;
             // 
             // label7
             // 
@@ -901,7 +899,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgGame)).EndInit();
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
@@ -917,24 +915,23 @@
         #endregion
 
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.ListBox listBox11;
-        private System.Windows.Forms.Button button16;
-        private System.Windows.Forms.Button button17;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.TextBox textBox10;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.ListBox listGames2;
+        private System.Windows.Forms.Button btnCreateType;
+        private System.Windows.Forms.Button btnAddDevelop;
+        private System.Windows.Forms.Button btnSaveChange;
+        private System.Windows.Forms.Button btnNewImage;
+        private System.Windows.Forms.TextBox txtImageAlt;
+        private System.Windows.Forms.TextBox txtSearch2;
+        private System.Windows.Forms.TextBox txtGameDescrip;
+        private System.Windows.Forms.TextBox txtGameName;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
-        private System.Windows.Forms.ListBox listBox5;
-        private System.Windows.Forms.ComboBox comboBox4;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.ListBox listBox4;
+        private System.Windows.Forms.Button btnRemoveType2;
+        private System.Windows.Forms.Button btnAddType2;
+        private System.Windows.Forms.ListBox listAddType;
+        private System.Windows.Forms.Button btnSearch2;
+        private System.Windows.Forms.ListBox listType;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox cbxDevelop;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
@@ -956,7 +953,7 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox listGetType;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox imgGame;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblGameDevelopGet;
         private System.Windows.Forms.Label label9;

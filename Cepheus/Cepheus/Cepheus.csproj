@@ -132,9 +132,13 @@
     </Compile>
     <Compile Include="Infrastructure\GameTypeHelper.cs" />
     <Compile Include="Infrastructure\Repository.cs" />
-    <Compile Include="Migrations\201304060345472_CreateTables.cs" />
-    <Compile Include="Migrations\201304060345472_CreateTables.Designer.cs">
-      <DependentUpon>201304060345472_CreateTables.cs</DependentUpon>
+    <Compile Include="Migrations\201304060549404_First.cs" />
+    <Compile Include="Migrations\201304060549404_First.Designer.cs">
+      <DependentUpon>201304060549404_First.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304061142269_aa.cs" />
+    <Compile Include="Migrations\201304061142269_aa.Designer.cs">
+      <DependentUpon>201304061142269_aa.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CepheusContext.cs" />
@@ -261,8 +265,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201304060345472_CreateTables.resx">
-      <DependentUpon>201304060345472_CreateTables.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201304060549404_First.resx">
+      <DependentUpon>201304060549404_First.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304061142269_aa.resx">
+      <DependentUpon>201304061142269_aa.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
