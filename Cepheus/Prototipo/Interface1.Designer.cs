@@ -51,21 +51,20 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.button13 = new System.Windows.Forms.Button();
-            this.listBox9 = new System.Windows.Forms.ListBox();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.listTypeDelete = new System.Windows.Forms.ListBox();
             this.label27 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.imageDelete = new System.Windows.Forms.PictureBox();
             this.label28 = new System.Windows.Forms.Label();
-            this.label29 = new System.Windows.Forms.Label();
+            this.lblGameDevelopDelete = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
+            this.lblGameDescripDelete = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
-            this.label33 = new System.Windows.Forms.Label();
+            this.lblGameNameDelete = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
-            this.listBox10 = new System.Windows.Forms.ListBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.button12 = new System.Windows.Forms.Button();
+            this.listGamesDelete = new System.Windows.Forms.ListBox();
+            this.txtSearchDelete = new System.Windows.Forms.TextBox();
+            this.btnSearchDelete = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.listGetType = new System.Windows.Forms.ListBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -108,7 +107,7 @@
             this.trackToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabPage4.SuspendLayout();
             this.tabPage3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageDelete)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgGame)).BeginInit();
             this.tabPage1.SuspendLayout();
@@ -324,21 +323,20 @@
             // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.button13);
-            this.tabPage3.Controls.Add(this.listBox9);
+            this.tabPage3.Controls.Add(this.btnDelete);
+            this.tabPage3.Controls.Add(this.listTypeDelete);
             this.tabPage3.Controls.Add(this.label27);
-            this.tabPage3.Controls.Add(this.pictureBox3);
+            this.tabPage3.Controls.Add(this.imageDelete);
             this.tabPage3.Controls.Add(this.label28);
-            this.tabPage3.Controls.Add(this.label29);
+            this.tabPage3.Controls.Add(this.lblGameDevelopDelete);
             this.tabPage3.Controls.Add(this.label30);
-            this.tabPage3.Controls.Add(this.label31);
+            this.tabPage3.Controls.Add(this.lblGameDescripDelete);
             this.tabPage3.Controls.Add(this.label32);
-            this.tabPage3.Controls.Add(this.label33);
+            this.tabPage3.Controls.Add(this.lblGameNameDelete);
             this.tabPage3.Controls.Add(this.label34);
-            this.tabPage3.Controls.Add(this.listBox10);
-            this.tabPage3.Controls.Add(this.comboBox2);
-            this.tabPage3.Controls.Add(this.textBox5);
-            this.tabPage3.Controls.Add(this.button12);
+            this.tabPage3.Controls.Add(this.listGamesDelete);
+            this.tabPage3.Controls.Add(this.txtSearchDelete);
+            this.tabPage3.Controls.Add(this.btnSearchDelete);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Size = new System.Drawing.Size(575, 370);
@@ -346,27 +344,28 @@
             this.tabPage3.Text = "Apagar";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // button13
+            // btnDelete
             // 
-            this.button13.Location = new System.Drawing.Point(6, 336);
-            this.button13.Name = "button13";
-            this.button13.Size = new System.Drawing.Size(75, 23);
-            this.button13.TabIndex = 47;
-            this.button13.Text = "Apagar";
-            this.button13.UseVisualStyleBackColor = true;
+            this.btnDelete.Location = new System.Drawing.Point(6, 336);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 47;
+            this.btnDelete.Text = "Apagar";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // listBox9
+            // listTypeDelete
             // 
-            this.listBox9.BackColor = System.Drawing.Color.White;
-            this.listBox9.FormattingEnabled = true;
-            this.listBox9.Items.AddRange(new object[] {
+            this.listTypeDelete.BackColor = System.Drawing.Color.White;
+            this.listTypeDelete.FormattingEnabled = true;
+            this.listTypeDelete.Items.AddRange(new object[] {
             "Multiplayer",
             "Singleplayer",
             "Ação"});
-            this.listBox9.Location = new System.Drawing.Point(434, 134);
-            this.listBox9.Name = "listBox9";
-            this.listBox9.Size = new System.Drawing.Size(120, 225);
-            this.listBox9.TabIndex = 46;
+            this.listTypeDelete.Location = new System.Drawing.Point(434, 134);
+            this.listTypeDelete.Name = "listTypeDelete";
+            this.listTypeDelete.Size = new System.Drawing.Size(120, 225);
+            this.listTypeDelete.TabIndex = 46;
             // 
             // label27
             // 
@@ -377,15 +376,15 @@
             this.label27.TabIndex = 45;
             this.label27.Text = "Tipo";
             // 
-            // pictureBox3
+            // imageDelete
             // 
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(132, 133);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(284, 226);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 44;
-            this.pictureBox3.TabStop = false;
+            this.imageDelete.Image = ((System.Drawing.Image)(resources.GetObject("imageDelete.Image")));
+            this.imageDelete.Location = new System.Drawing.Point(132, 133);
+            this.imageDelete.Name = "imageDelete";
+            this.imageDelete.Size = new System.Drawing.Size(284, 226);
+            this.imageDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.imageDelete.TabIndex = 44;
+            this.imageDelete.TabStop = false;
             // 
             // label28
             // 
@@ -396,14 +395,14 @@
             this.label28.TabIndex = 43;
             this.label28.Text = "Imagem";
             // 
-            // label29
+            // lblGameDevelopDelete
             // 
-            this.label29.AutoSize = true;
-            this.label29.Location = new System.Drawing.Point(224, 87);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(129, 13);
-            this.label29.TabIndex = 42;
-            this.label29.Text = "Nome da desenvolvedora";
+            this.lblGameDevelopDelete.AutoSize = true;
+            this.lblGameDevelopDelete.Location = new System.Drawing.Point(224, 87);
+            this.lblGameDevelopDelete.Name = "lblGameDevelopDelete";
+            this.lblGameDevelopDelete.Size = new System.Drawing.Size(129, 13);
+            this.lblGameDevelopDelete.TabIndex = 42;
+            this.lblGameDevelopDelete.Text = "Nome da desenvolvedora";
             // 
             // label30
             // 
@@ -414,14 +413,14 @@
             this.label30.TabIndex = 41;
             this.label30.Text = "Desenvolvedora";
             // 
-            // label31
+            // lblGameDescripDelete
             // 
-            this.label31.AutoSize = true;
-            this.label31.Location = new System.Drawing.Point(224, 61);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(93, 13);
-            this.label31.TabIndex = 40;
-            this.label31.Text = "Descrição do jogo";
+            this.lblGameDescripDelete.AutoSize = true;
+            this.lblGameDescripDelete.Location = new System.Drawing.Point(224, 61);
+            this.lblGameDescripDelete.Name = "lblGameDescripDelete";
+            this.lblGameDescripDelete.Size = new System.Drawing.Size(93, 13);
+            this.lblGameDescripDelete.TabIndex = 40;
+            this.lblGameDescripDelete.Text = "Descrição do jogo";
             // 
             // label32
             // 
@@ -432,14 +431,14 @@
             this.label32.TabIndex = 39;
             this.label32.Text = "Descrição";
             // 
-            // label33
+            // lblGameNameDelete
             // 
-            this.label33.AutoSize = true;
-            this.label33.Location = new System.Drawing.Point(224, 35);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(79, 13);
-            this.label33.TabIndex = 38;
-            this.label33.Text = "Nome do game";
+            this.lblGameNameDelete.AutoSize = true;
+            this.lblGameNameDelete.Location = new System.Drawing.Point(224, 35);
+            this.lblGameNameDelete.Name = "lblGameNameDelete";
+            this.lblGameNameDelete.Size = new System.Drawing.Size(79, 13);
+            this.lblGameNameDelete.TabIndex = 38;
+            this.lblGameNameDelete.Text = "Nome do game";
             // 
             // label34
             // 
@@ -450,37 +449,31 @@
             this.label34.TabIndex = 37;
             this.label34.Text = "Nome";
             // 
-            // listBox10
+            // listGamesDelete
             // 
-            this.listBox10.FormattingEnabled = true;
-            this.listBox10.Location = new System.Drawing.Point(6, 31);
-            this.listBox10.Name = "listBox10";
-            this.listBox10.Size = new System.Drawing.Size(120, 290);
-            this.listBox10.TabIndex = 36;
+            this.listGamesDelete.FormattingEnabled = true;
+            this.listGamesDelete.Location = new System.Drawing.Point(6, 31);
+            this.listGamesDelete.Name = "listGamesDelete";
+            this.listGamesDelete.Size = new System.Drawing.Size(120, 290);
+            this.listGamesDelete.TabIndex = 36;
+            this.listGamesDelete.SelectedIndexChanged += new System.EventHandler(this.deleteGameId_SelectedIndexChanged);
             // 
-            // comboBox2
+            // txtSearchDelete
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(427, 5);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(142, 21);
-            this.comboBox2.TabIndex = 33;
+            this.txtSearchDelete.Location = new System.Drawing.Point(6, 6);
+            this.txtSearchDelete.Name = "txtSearchDelete";
+            this.txtSearchDelete.Size = new System.Drawing.Size(212, 20);
+            this.txtSearchDelete.TabIndex = 32;
             // 
-            // textBox5
+            // btnSearchDelete
             // 
-            this.textBox5.Location = new System.Drawing.Point(6, 6);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(212, 20);
-            this.textBox5.TabIndex = 32;
-            // 
-            // button12
-            // 
-            this.button12.Location = new System.Drawing.Point(224, 4);
-            this.button12.Name = "button12";
-            this.button12.Size = new System.Drawing.Size(75, 23);
-            this.button12.TabIndex = 31;
-            this.button12.Text = "Pesquisar";
-            this.button12.UseVisualStyleBackColor = true;
+            this.btnSearchDelete.Location = new System.Drawing.Point(224, 4);
+            this.btnSearchDelete.Name = "btnSearchDelete";
+            this.btnSearchDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnSearchDelete.TabIndex = 31;
+            this.btnSearchDelete.Text = "Pesquisar";
+            this.btnSearchDelete.UseVisualStyleBackColor = true;
+            this.btnSearchDelete.Click += new System.EventHandler(this.btnSearchDelete_Click);
             // 
             // tabPage2
             // 
@@ -896,7 +889,7 @@
             this.tabPage4.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageDelete)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgGame)).EndInit();
@@ -936,20 +929,19 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.ListBox listBox9;
+        private System.Windows.Forms.ListBox listTypeDelete;
         private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox imageDelete;
         private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label lblGameDevelopDelete;
         private System.Windows.Forms.Label label30;
-        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label lblGameDescripDelete;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.Label lblGameNameDelete;
         private System.Windows.Forms.Label label34;
-        private System.Windows.Forms.ListBox listBox10;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.Button button12;
+        private System.Windows.Forms.ListBox listGamesDelete;
+        private System.Windows.Forms.TextBox txtSearchDelete;
+        private System.Windows.Forms.Button btnSearchDelete;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ListBox listGetType;
         private System.Windows.Forms.Label label8;
@@ -983,7 +975,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.Button button13;
+        private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem relatórioToolStripMenuItem;

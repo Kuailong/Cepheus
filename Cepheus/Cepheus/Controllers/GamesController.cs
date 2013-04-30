@@ -113,22 +113,29 @@ namespace Cepheus.Controllers
         [HttpPut]
         public HttpResponseMessage Put(int id, Game value)
         {
-            if (value == null)
+            var game = this._repository.Get(e => e.GameId == id)
+                .FirstOrDefault();
+
+            if (value == null || game == null)
                 throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
 
-            value.GameId = id;
-            if (value == null)
-                throw new HttpResponseException(new HttpResponseMessage(HttpStatusCode.BadRequest));
+            game.Description = value.Description;
+            game.DeveloperId = value.DeveloperId;
+            game.Developer = null;
+            game.Image = value.Image;
+            game.Name = value.Name;
+            game.GameAndTypes = null;
+            game.GameAndTypes = value.GameAndTypes;
 
             var typeHelper = new GameTypeHelper(new Repository<GameType>(this._context));
 
-            if (value.GameAndTypes != null && value.GameAndTypes.Count > 0)
+            if (game.GameAndTypes != null && game.GameAndTypes.Count > 0)
             {
-                typeHelper.FixDuplicationGameTypes(value.GameAndTypes);
-                typeHelper.FixInvalidDatas(value);
+                typeHelper.FixDuplicationGameTypes(game.GameAndTypes);
+                typeHelper.FixInvalidDatas(game);
             }
 
-            this._repository.Update<Game>(value);
+            this._repository.Update<Game>(game);
             this._context.SaveChanges();
 
             return Request.CreateResponse<Game>(HttpStatusCode.OK, value);

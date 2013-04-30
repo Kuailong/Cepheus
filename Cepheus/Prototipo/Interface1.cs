@@ -13,6 +13,7 @@ using Cepheus.DataAccess.Entities;
 using Cepheus.DataAccess.Enums;
 using Cepheus.Entities;
 using System.IO;
+using System.Net.Http;
 
 namespace Prototipo
 {
@@ -33,6 +34,7 @@ namespace Prototipo
             SetGetGames();
             SetAddGame();
             SetChangeGames();
+            SetDeleteGames();
         }
 
         private void relatórioToolStripMenuItem_Click(object sender, EventArgs e)
@@ -57,7 +59,7 @@ namespace Prototipo
         {
             var games = repository.GetMany<Game>(gamesUrl);
             var log = new Log();
-            log.RegisterLog(games, txtLog, gamesUrl);
+            log.RegisterLog(games, txtLog, gamesUrl, HttpMethod.Get);
 
             if (!games.IsSuccessStatusCode)
             {
@@ -100,7 +102,7 @@ namespace Prototipo
             var result = repository.Get<Game>(url);
             SetGetGame(result.Content);
             var log = new Log();
-            log.RegisterLog(result, txtLog, url);
+            log.RegisterLog(result, txtLog, url, HttpMethod.Get);
             lastChecked = result.Content;
         }
 
@@ -117,7 +119,7 @@ namespace Prototipo
             }
 
             var log = new Log();
-            log.RegisterLog(result, txtLog, url);
+            log.RegisterLog(result, txtLog, url, HttpMethod.Get);
 
             if (!result.IsSuccessStatusCode)
                 return;
@@ -254,6 +256,9 @@ namespace Prototipo
             }
 
             var result = repository.Post<Game>(gamesUrl, game);
+            var log = new Log();
+            log.RegisterLog(result, txtLog, gamesUrl, HttpMethod.Post);
+
             if (result.IsSuccessStatusCode)
                 MessageBox.Show("Jogo adicionado.");
             else
@@ -270,7 +275,7 @@ namespace Prototipo
         {
             var games = repository.GetMany<Game>(gamesUrl);
             var log = new Log();
-            log.RegisterLog(games, txtLog, gamesUrl);
+            log.RegisterLog(games, txtLog, gamesUrl, HttpMethod.Get);
 
             if (!games.IsSuccessStatusCode)
             {
@@ -278,7 +283,6 @@ namespace Prototipo
                 return;
             }
 
-            listGames2.Items.Clear();
             listGames2.DataSource = games.Content.ToList();
             listGames2.DisplayMember = "Name";
             listGames2.SelectedIndex = 0;
@@ -297,8 +301,7 @@ namespace Prototipo
             cbxDevelop.DisplayMember = "Name";
             cbxDevelop.SelectedItem = develops.Content.Where(e => e.DeveloperId == game.DeveloperId).First();
 
-            listAddType.Items.Clear();
-            listAddType.Items.AddRange(game.GameAndTypes.Select(e => e.GameType).ToArray());
+            listAddType.DataSource = game.GameAndTypes.Select(e => e.GameType).ToList();
             listAddType.DisplayMember = "Name";
 
             var types = repository.GetMany<GameType>(gameTypesUrl);
@@ -380,7 +383,7 @@ namespace Prototipo
             }
 
             var log = new Log();
-            log.RegisterLog(result, txtLog, url);
+            log.RegisterLog(result, txtLog, url, HttpMethod.Get);
 
             if (!result.IsSuccessStatusCode)
                 return;
@@ -401,7 +404,7 @@ namespace Prototipo
             var result = repository.Get<Game>(url);
             SetChangeGame(result.Content);
             var log = new Log();
-            log.RegisterLog(result, txtLog, url);
+            log.RegisterLog(result, txtLog, url, HttpMethod.Get);
             lastChecked = result.Content;
         }
 
@@ -436,7 +439,7 @@ namespace Prototipo
                 GameId = itemSelected.GameId,
                 Name = name,
                 Description = descrip,
-                Image = image,
+                Image = image == null ? itemSelected.Image : image,
                 GameAndTypes = new List<GameAndType>(),
                 Developer = developId == 0 ? develop : null,
                 DeveloperId = developId
@@ -450,12 +453,111 @@ namespace Prototipo
 
             var endpoint = string.Format("{0}/{1}", gamesUrl, itemSelected.GameId);
             var result = repository.Put<Game>(endpoint, game);
+            var log = new Log();
+            log.RegisterLog(result, txtLog, gamesUrl, HttpMethod.Put);
+
             if (result.IsSuccessStatusCode)
-                MessageBox.Show("Jogo adicionado.");
+                MessageBox.Show("Jogo alterado com sucesso.");
             else
-                MessageBox.Show("Não foi possível adicionar o jogo.");
+                MessageBox.Show("Não foi possível salvar as alterações do jogo.");
 
             SetChangeGames();
+        }
+
+        #endregion
+
+        #region DeleteGame
+
+        private void SetDeleteGames()
+        {
+            var games = repository.GetMany<Game>(gamesUrl);
+            var log = new Log();
+            log.RegisterLog(games, txtLog, gamesUrl, HttpMethod.Get);
+
+            if (!games.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Não existe nenhum game cadastrado");
+                return;
+            }
+
+            listGamesDelete.DataSource = games.Content.ToList();
+            listGamesDelete.DisplayMember = "Name";
+            listGamesDelete.SelectedIndex = 0;
+
+            SetDeleteGame(games.Content.First());
+        }
+
+        private void SetDeleteGame(Game game)
+        {
+            lblGameNameDelete.Text = game.Name;
+            lblGameDescripDelete.Text = game.Description;
+            lblGameDevelopDelete.Text = game.Developer.Name;
+            listTypeDelete.Items.Clear();
+            listTypeDelete.Items.AddRange(game.GameAndTypes.Select(e => e.GameType).ToArray());
+            listTypeDelete.DisplayMember = "Name";
+            if (game.Image != null)
+                using (var ms = new MemoryStream(game.Image))
+                {
+                    imageDelete.Image = Image.FromStream(ms);
+                    imageDelete.Visible = true;
+                }
+            else
+                imageDelete.Visible = false;
+        }
+
+        private void deleteGameId_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var itemSelected = (Game)listGamesDelete.SelectedValue;
+            if (itemSelected.GameId == lastChecked.GameId)
+                return;
+            var url = string.Format("{0}/{1}", gamesUrl, itemSelected.GameId);
+            var result = repository.Get<Game>(url);
+            SetDeleteGame(result.Content);
+            var log = new Log();
+            log.RegisterLog(result, txtLog, url, HttpMethod.Get);
+            lastChecked = result.Content;
+        }
+
+        private void btnSearchDelete_Click(object sender, EventArgs e)
+        {
+            var text = txtSearchDelete.Text;
+            var url = string.Format("{0}/Search/{1}", gamesUrl, text);
+            var result = repository.GetMany<Game>(url);
+            if (!result.IsSuccessStatusCode)
+            {
+                if (!string.IsNullOrEmpty(text))
+                    MessageBox.Show("Não foram encontrados jogos com essa busca: " + text);
+                result = repository.GetMany<Game>(gamesUrl);
+            }
+
+            var log = new Log();
+            log.RegisterLog(result, txtLog, url, HttpMethod.Get);
+
+            if (!result.IsSuccessStatusCode)
+                return;
+
+            listGamesDelete.DataSource = result.Content.ToList();
+            listGamesDelete.DisplayMember = "Name";
+            listGamesDelete.SelectedIndex = 0;
+
+            SetDeleteGame(result.Content.First());
+        }
+        
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            var itemSelected = (Game)listGames2.SelectedValue;
+            
+            var endpoint = string.Format("{0}/{1}", gamesUrl, itemSelected.GameId);
+            var result = repository.Delete(endpoint);
+            var log = new Log();
+            log.RegisterLog(result, txtLog, gamesUrl, HttpMethod.Delete);
+
+            if (result.IsSuccessStatusCode)
+                MessageBox.Show("Jogo foi deletado com sucesso.");
+            else
+                MessageBox.Show("Não foi possível deletar o jogo.");
+
+            SetDeleteGames();
         }
 
         #endregion
@@ -480,27 +582,43 @@ namespace Prototipo
 
     public class Log
     {
-        public void RegisterLog<T>(ResourceResult<T> result, TextBox txtBox, string url)
+        public void RegisterLog<T>(ResourceResult<T> result, TextBox txtBox, string url, HttpMethod method)
         {
             var text = txtBox.Text;
             text =
                 "--------------------------" + Environment.NewLine +
-                "Url: " + url +
+                "Url: " + url + " - HttpMethod: " + method.Method.ToString() + Environment.NewLine +
                 "Status: " + result.StatusCode.ToString() + Environment.NewLine +
-                "Response Content:" + result.ResponseMessage.Content.ReadAsStringAsync().Result + Environment.NewLine +
+                "Content Lenght:" + result.ResponseMessage.Content.Headers.ContentLength + Environment.NewLine +
+                "Content Type:" + result.ResponseMessage.Content.Headers.ContentType + Environment.NewLine +
                 "--------------------------" + Environment.NewLine + Environment.NewLine + text;
 
             txtBox.Text = text;
         }
 
-        internal void RegisterLog<T>(ResourceResult<IEnumerable<T>> result, TextBox txtBox, string url)
+        public void RegisterLog<T>(ResourceResult<IEnumerable<T>> result, TextBox txtBox, string url, HttpMethod method)
         {
             var text = txtBox.Text;
             text =
                 "--------------------------" + Environment.NewLine +
-                "Url: " + url +
+                "Url: " + url + " - HttpMethod: " + method.Method.ToString() + Environment.NewLine +
                 "Status: " + result.StatusCode.ToString() + Environment.NewLine +
-                "Response Content:" + result.ResponseMessage.Content.ReadAsStringAsync().Result + Environment.NewLine +
+                "Content Lenght:" + result.ResponseMessage.Content.Headers.ContentLength + Environment.NewLine +
+                "Content Type:" + result.ResponseMessage.Content.Headers.ContentType + Environment.NewLine +
+                "--------------------------" + Environment.NewLine + Environment.NewLine + text;
+
+            txtBox.Text = text;
+        }
+
+        public void RegisterLog(HttpResponseMessage result, TextBox txtBox, string gamesUrl, HttpMethod method)
+        {
+            var text = txtBox.Text;
+            text =
+                "--------------------------" + Environment.NewLine +
+                "Url: " + result.RequestMessage.RequestUri + " - HttpMethod: " + method.Method.ToString() + Environment.NewLine +
+                "Status: " + result.StatusCode.ToString() + Environment.NewLine +
+                "Content Lenght:" + result.Content.Headers.ContentLength + Environment.NewLine +
+                "Content Type:" + result.Content.Headers.ContentType + Environment.NewLine +
                 "--------------------------" + Environment.NewLine + Environment.NewLine + text;
 
             txtBox.Text = text;
