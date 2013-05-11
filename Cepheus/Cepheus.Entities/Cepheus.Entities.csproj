@@ -48,11 +48,13 @@
     <Compile Include="Configurations\GameConfig.cs" />
     <Compile Include="Configurations\GameTypeConfig.cs" />
     <Compile Include="Configurations\GameAndTypeConfig.cs" />
+    <Compile Include="Configurations\UserConfig.cs" />
     <Compile Include="Developer.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="GameAndType.cs" />
     <Compile Include="GameType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

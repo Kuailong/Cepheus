@@ -13,6 +13,7 @@ using Cepheus.Models;
 
 namespace Cepheus.Controllers
 {
+    [TokenValidation]
     public class GamesController : ApiController
     {
         #region Private Properties

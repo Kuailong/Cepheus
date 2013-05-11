@@ -16,6 +16,7 @@ namespace Cepheus.Models
         public DbSet<GameAndType> GameAndType { get; set; }
         public DbSet<GameType> GameTypes { get; set; }
         public DbSet<Developer> Developers { get; set; }
+        public DbSet<User> Users { get; set; }
 
         #endregion
 
@@ -45,6 +46,8 @@ namespace Cepheus.Models
             modelBuilder.Configurations.Add(new GameAndTypeConfig());
             modelBuilder.Configurations.Add(new GameTypeConfig());
             modelBuilder.Configurations.Add(new DeveloperConfig());
+            modelBuilder.Configurations.Add(new UserConfig());
+
         }
 
         #endregion

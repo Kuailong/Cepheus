@@ -21,6 +21,7 @@ namespace Cepheus.DataAccess
         #region Public Properties
 
         public HttpClientHandler RequestHandler { get; set; }
+        public Dictionary<string, string> Headers { get; set; }
 
         #endregion
 
@@ -52,6 +53,12 @@ namespace Cepheus.DataAccess
             : this(mediaType)
         {
             this.RequestHandler = new HttpClientHandler() { Credentials = credentials };
+        }
+
+        public WebApiRequester(eMediaType mediaType, Dictionary<string,string> headers)
+            : this(mediaType)
+        {
+            this.Headers = headers;
         }
 
         #endregion
@@ -104,6 +111,11 @@ namespace Cepheus.DataAccess
             using (var client = this.RequestHandler == null ? new HttpClient() : new HttpClient(this.RequestHandler, false))
             {
                 client.DefaultRequestHeaders.Accept.Add(this._mediaType);
+                if (this.Headers != null)
+                {
+                    foreach (var item in Headers)
+                        client.DefaultRequestHeaders.Add(item.Key, item.Value);
+                }
 
                 switch (apiHttpMethod)
                 {

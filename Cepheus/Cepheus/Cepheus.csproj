@@ -118,6 +118,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AppSettingsConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -126,22 +127,25 @@
     <Compile Include="Controllers\GamesController.cs" />
     <Compile Include="Controllers\GameTypesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TokenController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\BasicHttpAuthorizeAttribute.cs" />
     <Compile Include="Infrastructure\GameTypeHelper.cs" />
+    <Compile Include="Infrastructure\CriptoHelper.cs" />
+    <Compile Include="Infrastructure\HttpsRequeridAttribute.cs" />
     <Compile Include="Infrastructure\Repository.cs" />
-    <Compile Include="Migrations\201304060549404_First.cs" />
-    <Compile Include="Migrations\201304060549404_First.Designer.cs">
-      <DependentUpon>201304060549404_First.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201304061142269_aa.cs" />
-    <Compile Include="Migrations\201304061142269_aa.Designer.cs">
-      <DependentUpon>201304061142269_aa.cs</DependentUpon>
+    <Compile Include="Infrastructure\RSAClass.cs" />
+    <Compile Include="Infrastructure\TokenValidationAttribute.cs" />
+    <Compile Include="Migrations\201305110358184_First.cs" />
+    <Compile Include="Migrations\201305110358184_First.Designer.cs">
+      <DependentUpon>201305110358184_First.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CepheusContext.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +251,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\Invalid.cshtml" />
+    <Content Include="Views\Home\Done.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -265,11 +271,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201304060549404_First.resx">
-      <DependentUpon>201304060549404_First.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201304061142269_aa.resx">
-      <DependentUpon>201304061142269_aa.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201305110358184_First.resx">
+      <DependentUpon>201305110358184_First.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

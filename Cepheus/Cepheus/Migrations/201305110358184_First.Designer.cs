@@ -11,7 +11,7 @@ namespace Cepheus.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201304060549404_First"; }
+            get { return "201305110358184_First"; }
         }
         
         string IMigrationMetadata.Source
